@@ -1,0 +1,135 @@
+/* ================================================================
+   PLAN MODULE — Module-Specific Styles
+   APEX FITNESS · Fitness Center Membership System
+   ================================================================
+   Styles for membership plan management (Basic, Standard, Premium).
+   ================================================================ */
+
+:root {
+  --accent: #C8F03D;
+  --bg: #080808;
+  --surface: #111111;
+  --border: rgba(255,255,255,0.07);
+  --text: #ffffff;
+  --text-muted: rgba(255,255,255,0.45);
+  --danger: #f87171;
+  --radius: 16px;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ── Plan Card ── */
+.plan-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.plan-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  border-color: rgba(200,240,61,0.2);
+}
+
+/* ── Plan Card Header Tiers ── */
+.plan-card-header {
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.plan-card-header.basic {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.plan-card-header.standard {
+  background: linear-gradient(135deg, #1a2e1a, #162e16);
+}
+
+.plan-card-header.premium {
+  background: linear-gradient(135deg, #2e1a1a, #2e1616);
+}
+
+.plan-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.3rem;
+}
+
+.plan-price {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.plan-price small {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.plan-duration {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+/* ── Plan Features ── */
+.plan-card-body {
+  padding: 1.25rem 1.5rem;
+}
+
+.plan-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255,255,255,0.75);
+}
+
+.plan-feature i {
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+/* ── Plan Card Footer ── */
+.plan-card-footer {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Action Buttons ── */
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.85rem;
+}
+
+.btn-icon.edit:hover {
+  border-color: rgba(251,191,36,0.4);
+  color: #fbbf24;
+  background: rgba(251,191,36,0.06);
+}
+
+.btn-icon.delete:hover {
+  border-color: rgba(248,113,113,0.4);
+  color: #f87171;
+  background: rgba(248,113,113,0.06);
+}
