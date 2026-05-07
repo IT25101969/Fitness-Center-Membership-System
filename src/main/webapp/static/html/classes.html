@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our Classes — APEX FITNESS</title>
+<meta name="description" content="Explore fitness classes at APEX Fitness — HIIT, Strength, Yoga, Spin, Boxing, CrossFit and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
+<style>
+:root{--accent:#C8F03D;--black:#0a0a0a;--card:#0f0f0f;--card2:#141414;--border:rgba(255,255,255,.07);--gray:rgba(255,255,255,.45);--white:#fff;--font-display:'Bebas Neue',sans-serif;--font-body:'Inter',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--black);color:#fff;font-family:var(--font-body);min-height:100vh;overflow-x:hidden;}
+::selection{background:var(--accent);color:#000;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--font-display);font-size:1.6rem;color:#fff;text-decoration:none;letter-spacing:2px;}
+.nav-logo span{color:var(--accent);}
+.nav-back{color:var(--gray);text-decoration:none;font-size:.82rem;font-weight:600;display:flex;align-items:center;gap:.5rem;transition:color .2s;}
+.nav-back:hover{color:var(--accent);}
+.nav-back i{transition:transform .2s;}.nav-back:hover i{transform:translateX(-3px);}
+
+/* HERO */
+.hero{position:relative;padding:8rem 3rem 4rem;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:0;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(200,240,61,.06) 0%,transparent 70%);pointer-events:none;}
+.hero-tag{font-size:.65rem;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;}
+.hero-tag i{font-size:.8rem;}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);letter-spacing:3px;line-height:1;margin-bottom:1rem;}
+.hero-title span{color:var(--accent);}
+.hero-sub{color:var(--gray);font-size:.9rem;line-height:1.8;max-width:550px;margin-bottom:2.5rem;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:1200px;margin:0 auto;padding:0 3rem 3rem;}
+.stat{background:linear-gradient(135deg,var(--card2),var(--card));border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center;position:relative;overflow:hidden;}
+.stat::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.3;}
+.stat-val{font-family:var(--font-display);font-size:2.2rem;color:var(--accent);letter-spacing:1px;}
+.stat-lbl{font-size:.65rem;color:var(--gray);margin-top:.2rem;text-transform:uppercase;letter-spacing:2px;font-weight:600;}
+
+/* FILTER */
+.filter-section{max-width:1200px;margin:0 auto;padding:0 3rem 2rem;}
+.filter-row{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;}
+.filter-label{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-right:.5rem;}
+.f-btn{padding:.5rem 1.2rem;border-radius:50px;border:1px solid var(--border);background:transparent;color:var(--gray);font-size:.72rem;font-weight:700;cursor:pointer;transition:all .25s;letter-spacing:.3px;}
+.f-btn:hover{border-color:rgba(200,240,61,.3);color:#fff;}
+.f-btn.active{background:var(--accent);color:#000;border-color:var(--accent);box-shadow:0 4px 20px rgba(200,240,61,.2);}
+
+/* GRID */
+.grid-section{max-width:1200px;margin:0 auto;padding:0 3rem 4rem;}
+.classes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.cls-count{font-size:.8rem;color:var(--gray);margin-bottom:1.5rem;}
+.cls-count b{color:var(--white);}
+
+/* CARD */
+.cls-card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .35s ease;cursor:pointer;display:flex;flex-direction:column;}
+.cls-card:hover{border-color:rgba(200,240,61,.3);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 40px rgba(200,240,61,.04);}
+.cls-img{height:200px;overflow:hidden;position:relative;}
+.cls-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.cls-card:hover .cls-img img{transform:scale(1.08);}
+.cls-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.9) 0%,rgba(10,10,10,.2) 50%,transparent 100%);}
+.cls-tag{position:absolute;top:.8rem;left:.8rem;background:rgba(0,0,0,.6);border:1px solid rgba(200,240,61,.4);color:var(--accent);font-size:.55rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:.25rem .7rem;border-radius:20px;backdrop-filter:blur(8px);z-index:2;}
+.cls-level{position:absolute;top:.8rem;right:.8rem;background:rgba(0,0,0,.5);color:var(--gray);font-size:.55rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:.25rem .6rem;border-radius:20px;backdrop-filter:blur(8px);z-index:2;}
+.cls-body{padding:1.3rem 1.4rem 1.5rem;display:flex;flex-direction:column;flex:1;}
+.cls-name{font-family:var(--font-display);font-size:1.5rem;letter-spacing:2px;margin-bottom:.4rem;}
+.cls-trainer{font-size:.7rem;color:var(--accent);font-weight:600;margin-bottom:.6rem;display:flex;align-items:center;gap:.35rem;}
+.cls-desc{font-size:.76rem;color:var(--gray);line-height:1.7;margin-bottom:1rem;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.cls-meta{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:1rem;}
+.cls-meta span{font-size:.68rem;color:var(--gray);display:flex;align-items:center;gap:.3rem;}
+.cls-meta i{color:rgba(200,240,61,.7);font-size:.72rem;}
+.cls-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.9rem;border-top:1px solid var(--border);}
+.cls-schedule{font-size:.68rem;color:rgba(255,255,255,.5);}
+.cls-schedule strong{color:var(--white);font-weight:700;}
+.cls-book{padding:.45rem 1rem;border-radius:8px;border:1px solid rgba(200,240,61,.3);background:rgba(200,240,61,.08);color:var(--accent);font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.3rem;white-space:nowrap;}
+.cls-book:hover{background:var(--accent);color:#000;border-color:var(--accent);transform:scale(1.05);}
+
+/* CTA */
+.cta-section{max-width:1200px;margin:0 auto;padding:0 3rem 5rem;}
+.cta-box{background:linear-gradient(135deg,rgba(200,240,61,.08),rgba(200,240,61,.02));border:1px solid rgba(200,240,61,.15);border-radius:20px;padding:3rem;text-align:center;position:relative;overflow:hidden;}
+.cta-box::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(200,240,61,.05),transparent 50%);pointer-events:none;}
+.cta-title{font-family:var(--font-display);font-size:2rem;letter-spacing:2px;margin-bottom:.5rem;}
+.cta-title span{color:var(--accent);}
+.cta-sub{color:var(--gray);font-size:.85rem;margin-bottom:1.5rem;}
+.cta-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;border-radius:50px;border:none;background:var(--accent);color:#000;font-size:.82rem;font-weight:800;letter-spacing:.5px;cursor:pointer;transition:all .25s;text-decoration:none;}
+.cta-btn:hover{transform:scale(1.05);box-shadow:0 8px 30px rgba(200,240,61,.3);}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(120px);background:rgba(20,20,30,.95);color:#fff;padding:1rem 2rem;border-radius:12px;font-size:.82rem;font-weight:600;z-index:9999;transition:transform .4s ease;border:1px solid rgba(200,240,61,.2);box-shadow:0 8px 32px rgba(0,0,0,.5);backdrop-filter:blur(10px);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast i{color:var(--accent);margin-right:.5rem;}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.classes-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){.stats{grid-template-columns:repeat(2,1fr);padding:0 1.5rem 2rem;}.hero,.filter-section,.grid-section,.cta-section{padding-left:1.5rem;padding-right:1.5rem;}.nav{padding:1rem 1.5rem;}}
+@media(max-width:550px){.classes-grid{grid-template-columns:1fr;}.hero{padding-top:6rem;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">APEX<span>FITNESS</span></a>
+  <a href="/" class="nav-back"><i class="bi bi-arrow-left"></i> Back to Home</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag"><i class="bi bi-calendar3"></i> WEEKLY SCHEDULE</div>
+  <h1 class="hero-title">OUR <span>CLASSES</span></h1>
+  <p class="hero-sub">World-class group fitness sessions led by certified trainers. Find your perfect workout, push your limits, and book your spot today.</p>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-val">18</div><div class="stat-lbl">Classes / Week</div></div>
+  <div class="stat"><div class="stat-val">9</div><div class="stat-lbl">Disciplines</div></div>
+  <div class="stat"><div class="stat-val">8</div><div class="stat-lbl">Expert Trainers</div></div>
+  <div class="stat"><div class="stat-val">25</div><div class="stat-lbl">Max Class Size</div></div>
+</div>
+
+<!-- FILTER -->
+<div class="filter-section">
+  <div class="filter-row">
+    <span class="filter-label">Filter:</span>
+    <button class="f-btn active" onclick="filterDay('all',this)">All Classes</button>
+    <button class="f-btn" onclick="filterDay('mwf',this)">Mon · Wed · Fri</button>
+    <button class="f-btn" onclick="filterDay('tts',this)">Tue · Thu · Sat</button>
+    <button class="f-btn" onclick="filterDay('daily',this)">Daily</button>
+    <button class="f-btn" onclick="filterDay('weekend',this)">Weekend</button>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="grid-section">
+  <div class="cls-count" id="clsCount">Showing <b>9</b> of <b>9</b> classes</div>
+  <div class="classes-grid" id="classesGrid"></div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-box">
+    <div class="cta-title">READY TO <span>GET STARTED?</span></div>
+    <div class="cta-sub">Join APEX FITNESS today and get your first class free. No commitment required.</div>
+    <a href="member-register" class="cta-btn"><i class="bi bi-lightning-charge-fill"></i> Join Now — First Class Free</a>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+var CM_KEY='apex_admin_classes';
+var FALLBACK=[
+  {name:'HIIT BLAST',cat:'High Intensity',level:'All Levels',trainer:'Coach Marcus',schedule:'Mon, Wed, Fri',time:'6:00 AM & 6:00 PM',duration:45,capacity:20,calories:'600+ kcal',desc:'Explosive intervals that torch calories and build endurance.',day:'mwf',img:'/static/images/workout-class.png'},
+  {name:'POWER LIFT',cat:'Strength',level:'Intermediate',trainer:'Coach Daniel',schedule:'Tue, Thu, Sat',time:'7:00 AM & 5:00 PM',duration:60,capacity:15,calories:'400+ kcal',desc:'Structured barbell and dumbbell training focusing on compound lifts.',day:'tts',img:'/static/images/gym-interior.png'},
+  {name:'FLOW YOGA',cat:'Mind & Body',level:'All Levels',trainer:'Coach Priya',schedule:'Daily',time:'7:30 AM & 7:00 PM',duration:60,capacity:25,calories:'200+ kcal',desc:'Vinyasa-style sequences to improve flexibility, balance and inner calm.',day:'daily',img:'/static/images/trainer.png'},
+  {name:'SPIN CYCLE',cat:'Cardio',level:'All Levels',trainer:'Coach Nadia',schedule:'Mon, Wed, Fri',time:'7:00 AM & 6:30 PM',duration:45,capacity:20,calories:'500+ kcal',desc:'High-energy indoor cycling with rhythm-based choreography.',day:'mwf',img:'/static/images/hero.png'},
+  {name:'BOXING FIT',cat:'Combat',level:'Beginner+',trainer:'Coach Ashan',schedule:'Tue, Thu, Sat',time:'6:00 PM',duration:50,capacity:16,calories:'550+ kcal',desc:'Learn proper boxing technique while getting a full-body workout.',day:'tts',img:'/static/images/gym-interior.png'},
+  {name:'PILATES CORE',cat:'Core & Flex',level:'All Levels',trainer:'Coach Tara',schedule:'Sat & Sun',time:'9:00 AM',duration:55,capacity:18,calories:'300+ kcal',desc:'Mat-based Pilates focusing on deep core activation and posture.',day:'weekend',img:'/static/images/workout-class.png'},
+  {name:'CROSSFIT WOD',cat:'CrossFit',level:'Advanced',trainer:'Coach Kasun',schedule:'Mon, Wed, Fri',time:'5:30 AM & 5:30 PM',duration:60,capacity:14,calories:'700+ kcal',desc:'Workout of the Day combining Olympic lifts, gymnastics and conditioning.',day:'mwf',img:'/static/images/trainer.png'},
+  {name:'ZUMBA DANCE',cat:'Dance',level:'All Levels',trainer:'Coach Shanaya',schedule:'Tue, Thu, Sat',time:'6:00 PM',duration:50,capacity:25,calories:'450+ kcal',desc:'Dance your way to fitness with Latin-inspired choreography.',day:'tts',img:'/static/images/hero.png'},
+  {name:'FUNCTIONAL FIT',cat:'Functional',level:'Beginner+',trainer:'Coach Ravi',schedule:'Daily',time:'8:00 AM & 4:30 PM',duration:50,capacity:18,calories:'480+ kcal',desc:'Build real-world strength with kettlebells, TRX, and battle ropes.',day:'daily',img:'/static/images/gym-interior.png'}
+];
+
+function getClasses(){try{var d=JSON.parse(localStorage.getItem(CM_KEY));return d&&d.length?d:FALLBACK;}catch(e){return FALLBACK;}}
+function getBookings(){try{return JSON.parse(localStorage.getItem('apex_booked_classes')||'[]');}catch(e){return [];}}
+function saveBookings(list){localStorage.setItem('apex_booked_classes',JSON.stringify(list));}
+
+function renderClasses(){
+  var classes=getClasses(),grid=document.getElementById('classesGrid'),bookings=getBookings();
+  var bookedNames=bookings.map(function(b){return b.name;});
+  var imgs=['/static/images/workout-class.png','/static/images/gym-interior.png','/static/images/trainer.png','/static/images/hero.png'];
+  grid.innerHTML=classes.map(function(c,i){
+    var img=c.img||imgs[i%imgs.length];
+    var isBooked=bookedNames.indexOf(c.name)>=0;
+    var bookBtn=isBooked
+      ?'<button class="cls-book" style="background:#34d399;color:#000;border-color:#34d399;pointer-events:none"><i class="bi bi-check-circle-fill"></i> Booked</button>'
+      :'<button class="cls-book" onclick="bookClass(\''+c.name.replace(/'/g,"\\'")+'\')"><i class="bi bi-bookmark-plus"></i> Book</button>';
+    return '<div class="cls-card" data-day="'+(c.day||'daily')+'">'+
+      '<div class="cls-img"><img src="'+img+'" alt="'+c.name+'"><div class="cls-overlay"></div><span class="cls-tag">'+c.cat+'</span><span class="cls-level">'+c.level+'</span></div>'+
+      '<div class="cls-body"><div class="cls-name">'+c.name+'</div><div class="cls-trainer"><i class="bi bi-person-badge"></i> '+c.trainer+'</div>'+
+      '<div class="cls-desc">'+c.desc+'</div>'+
+      '<div class="cls-meta"><span><i class="bi bi-clock"></i> '+c.duration+' min</span><span><i class="bi bi-people"></i> '+c.capacity+' spots</span><span><i class="bi bi-fire"></i> '+c.calories+'</span></div>'+
+      '<div class="cls-footer"><div class="cls-schedule"><strong>'+c.schedule+'</strong> · '+c.time+'</div>'+bookBtn+'</div></div></div>';
+  }).join('');
+  // Update stats
+  var cats={};classes.forEach(function(c){cats[c.cat]=true;});
+  document.querySelector('.stats').innerHTML=
+    '<div class="stat"><div class="stat-val">'+classes.length+'</div><div class="stat-lbl">Classes / Week</div></div>'+
+    '<div class="stat"><div class="stat-val">'+Object.keys(cats).length+'</div><div class="stat-lbl">Disciplines</div></div>'+
+    '<div class="stat"><div class="stat-val">8</div><div class="stat-lbl">Expert Trainers</div></div>'+
+    '<div class="stat"><div class="stat-val">25</div><div class="stat-lbl">Max Class Size</div></div>';
+  document.getElementById('clsCount').innerHTML='Showing <b>'+classes.length+'</b> of <b>'+classes.length+'</b> classes';
+}
+
+function filterDay(day,btn){
+  document.querySelectorAll('.f-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  var cards=document.querySelectorAll('.cls-card'),shown=0,total=cards.length;
+  cards.forEach(function(c){var m=day==='all'||c.dataset.day===day;c.style.display=m?'':'none';if(m){c.style.animation='fadeUp .4s ease '+(shown*0.06)+'s both';shown++;}});
+  document.getElementById('clsCount').innerHTML='Showing <b>'+shown+'</b> of <b>'+total+'</b> classes';
+}
+
+function bookClass(name){
+  var bookings=getBookings();
+  if(bookings.some(function(b){return b.name===name;})){showToast(name+' is already booked!');return;}
+  var classes=getClasses(),cls=classes.find(function(c){return c.name===name;})||{};
+  var icons={'High Intensity':'bi-lightning-charge-fill','Strength':'bi-bar-chart-steps','Mind & Body':'bi-person-arms-up','Cardio':'bi-bicycle','Combat':'bi-hand-index-thumb-fill','Core & Flex':'bi-activity','CrossFit':'bi-fire','Dance':'bi-music-note-beamed','Functional':'bi-gear-wide-connected'};
+  var colors={'High Intensity':'#f87171','Strength':'#60a5fa','Mind & Body':'#34d399','Cardio':'#C8F03D','Combat':'#a78bfa','Core & Flex':'#fbbf24','CrossFit':'#f87171','Dance':'#60a5fa','Functional':'#34d399'};
+  bookings.push({name:name,icon:icons[cls.cat]||'bi-calendar3',color:colors[cls.cat]||'#C8F03D',schedule:cls.schedule+' · '+cls.time,trainer:cls.trainer,bookedAt:new Date().toISOString()});
+  saveBookings(bookings);renderClasses();
+  showToast(name+' — Spot reserved! View it in your Dashboard 💪');
+}
+
+function showToast(msg){var t=document.getElementById('toast');t.innerHTML='<i class="bi bi-check-circle-fill"></i> '+msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3000);}
+
+document.addEventListener('DOMContentLoaded',renderClasses);
+</script>
+<style>@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}</style>
+</body>
+</html>
+
