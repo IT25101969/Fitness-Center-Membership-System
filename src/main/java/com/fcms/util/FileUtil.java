@@ -1,4 +1,4 @@
-﻿package com.antigravity.fcms.util;
+﻿package com.fcms.util;
 
 import com.example.fitness.center.FileStorageService;
 
