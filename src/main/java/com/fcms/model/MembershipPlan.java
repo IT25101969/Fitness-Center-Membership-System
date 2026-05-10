@@ -1,4 +1,4 @@
-﻿package com.fcms.model;
+package com.fcms.model;
 
 import jakarta.persistence.*;
 import java.util.Arrays;
