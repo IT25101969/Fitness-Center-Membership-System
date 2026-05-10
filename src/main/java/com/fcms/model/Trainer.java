@@ -1,4 +1,4 @@
-package com.project.fcms.modules.trainer.backend.model;
+package com.fcms.model;
 
 import com.project.fcms.modules.auth.backend.model.Person;
 import jakarta.persistence.*;

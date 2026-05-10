@@ -1,4 +1,4 @@
-package com.project.fcms.modules.trainer.backend.repository;
+package com.fcms.repository;
 
 import com.project.fcms.modules.trainer.backend.model.Trainer;
 import org.springframework.data.jpa.repository.JpaRepository;
