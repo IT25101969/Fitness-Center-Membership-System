@@ -1,4 +1,4 @@
-﻿package com.antigravity.fcms.config;
+﻿package com.fcms.config;
 
 import com.example.fitness.center.FileStorageService;
 import com.antigravity.fcms.modules.auth.backend.model.Member;
@@ -17,7 +17,7 @@ import com.antigravity.fcms.modules.workout.backend.model.Exercise;
 import com.antigravity.fcms.modules.workout.backend.model.FitnessClass;
 import com.antigravity.fcms.modules.workout.backend.repository.ExerciseRepository;
 import com.antigravity.fcms.modules.workout.backend.repository.FitnessClassRepository;
-import com.antigravity.fcms.util.FileUtil;
+import com.fcms.util.FileUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;

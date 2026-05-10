@@ -133,20 +133,18 @@ function getExDetail(ex){
 
 function openExDetail(id){
   var ex=null;
-  if(typeof DATA!=='undefined') ex=DATA.find(function(e){return e.id===id || e.slugId===id;});
-  if(!ex&&typeof EX2_DATA!=='undefined') ex=EX2_DATA.find(function(e){return e.id===id || e.slugId===id;});
+  if(typeof DATA!=='undefined') ex=DATA.find(function(e){return e.id===id;});
+  if(!ex&&typeof EX2_DATA!=='undefined') ex=EX2_DATA.find(function(e){return e.id===id;});
   if(!ex) return;
-  // Use slugId for detail lookups (EX_DETAIL keys are slugIds)
-  var lookupId = ex.slugId || ex.id;
-  var d=getExDetail({id:lookupId, name:ex.name, m:ex.m, e:ex.e, desc:ex.desc, s:ex.s, slugId:lookupId});
+  var d=getExDetail(ex);
   // Try server-side image first, then localStorage fallback
   var serverImg=null;
-  if(typeof ex2ServerImages!=='undefined'&&ex2ServerImages[lookupId]){
-    serverImg=(typeof EX2_IMG_API!=='undefined'?EX2_IMG_API:'api/exercise-images')+'?id='+encodeURIComponent(lookupId);
-  } else if(typeof serverImageIds!=='undefined'&&serverImageIds[lookupId]){
-    serverImg=(typeof exImgUrl!=='undefined'?exImgUrl(lookupId):'api/exercise-images?id='+encodeURIComponent(lookupId));
+  if(typeof ex2ServerImages!=='undefined'&&ex2ServerImages[ex.id]){
+    serverImg=(typeof EX2_IMG_API!=='undefined'?EX2_IMG_API:'api/exercise-images')+'?id='+encodeURIComponent(ex.id);
+  } else if(typeof serverImageIds!=='undefined'&&serverImageIds[ex.id]){
+    serverImg=(typeof exImgUrl!=='undefined'?exImgUrl(ex.id):'api/exercise-images?id='+encodeURIComponent(ex.id));
   }
-  var customImg=serverImg||localStorage.getItem('eximg_'+lookupId);
+  var customImg=serverImg||localStorage.getItem('eximg_'+ex.id);
   var imgHtml=customImg
     ?'<div class="exd-img"><img src="'+customImg+'" alt="'+ex.name+'"><div class="exd-img-overlay"></div></div>'
     :'<div class="exd-img exd-img-empty"><i class="bi bi-camera"></i></div>';

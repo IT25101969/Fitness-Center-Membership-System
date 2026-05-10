@@ -1,0 +1,201 @@
+<div class="mp-sec" id="sec-exercise">
+<style>
+.ex2-accent{color:#C8F03D}.ex2-tag{font-size:.58rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#C8F03D;margin-bottom:.3rem}
+.ex2-title{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:2px;margin-bottom:1.5rem}
+.ex2-panel{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1.8rem 2rem;margin-bottom:2rem}
+.ex2-cols{display:flex;gap:0}
+.ex2-col{flex:1;padding:0 1.5rem}
+.ex2-col:first-child{padding-left:0}
+.ex2-col:last-child{padding-right:0;border-right:none}
+.ex2-col+.ex2-col{border-left:1px solid rgba(255,255,255,.07)}
+.ex2-col-hd{font-size:.62rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.1rem}
+.ex2-row{display:flex;align-items:center;gap:.7rem;margin-bottom:.15rem}
+.ex2-row-left{display:flex;flex-direction:column;gap:.05rem}
+.ex2-thumb{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.ex2-link{display:flex;align-items:flex-start;gap:.7rem;padding:.5rem .6rem;border-radius:9px;text-decoration:none;transition:background .18s;cursor:pointer}
+.ex2-link:hover{background:rgba(200,240,61,.06)}
+.ex2-link:hover .ex2-lname{color:#C8F03D}
+.ex2-lname{font-size:.72rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:#fff;transition:color .18s;display:inline-flex;align-items:center;gap:.3rem}
+.ex2-lname i{font-size:.65rem;color:#C8F03D}
+.ex2-lsub{font-size:.65rem;color:rgba(255,255,255,.38);margin-top:.05rem}
+.ex2-equip-hd{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;margin-bottom:1.2rem}
+.ex2-equip-grid{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.ex2-equip-box{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:.9rem .7rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;cursor:pointer;transition:all .2s;min-width:75px;text-decoration:none}
+.ex2-equip-box:hover{border-color:#C8F03D;background:rgba(200,240,61,.06)}
+.ex2-equip-box span{font-size:.62rem;color:rgba(255,255,255,.6);text-align:center;line-height:1.3;font-weight:600}
+.ex2-equip-box i{font-size:1.6rem;color:rgba(255,255,255,.5)}
+.ex2-equip-box:hover i{color:#C8F03D}
+.ex2-search-wrap{position:relative;margin-bottom:1.8rem}
+.ex2-search-wrap i.si{position:absolute;left:1.2rem;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.3);pointer-events:none;font-size:.95rem}
+.ex2-search-wrap input{width:100%;padding:.85rem 1.5rem .85rem 3.2rem;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:#fff;font-size:.88rem;outline:none;transition:border-color .25s}
+.ex2-search-wrap input:focus{border-color:rgba(200,240,61,.4)}
+.ex2-search-wrap input::placeholder{color:rgba(255,255,255,.3)}
+.ex2-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.ex2-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;transition:border-color .2s,transform .2s;cursor:pointer;display:flex;flex-direction:column}
+.ex2-card:hover{border-color:rgba(200,240,61,.25);transform:translateY(-3px)}
+.ex2-img{height:160px;overflow:hidden;position:relative;background:#0d1f1a}
+.ex2-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.ex2-card:hover .ex2-img img{transform:scale(1.05)}
+.ex2-body{padding:1rem 1.1rem 1.1rem;display:flex;flex-direction:column;flex:1}
+.ex2-cname{font-size:.82rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;margin-bottom:.4rem}
+.ex2-cdesc{font-size:.7rem;color:rgba(255,255,255,.48);line-height:1.6;margin-bottom:.8rem;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ex2-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.75rem}
+.ex2-pill{padding:.15rem .5rem;border-radius:4px;font-size:.57rem;font-weight:700;letter-spacing:.4px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.5)}
+.ex2-foot{display:flex;align-items:center;justify-content:space-between;padding-top:.6rem;border-top:1px solid rgba(255,255,255,.06)}
+.ex2-equip-lbl{font-size:.63rem;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:.35rem}
+.ex2-arr{width:26px;height:26px;border-radius:6px;background:rgba(200,240,61,.1);display:flex;align-items:center;justify-content:center;color:#C8F03D;font-size:.75rem;transition:background .2s}
+.ex2-card:hover .ex2-arr{background:#C8F03D;color:#000}
+.ex2-promo{background:rgba(200,240,61,.08);border:1px solid rgba(200,240,61,.2);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;justify-content:center}
+.ex2-promo-tag{font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C8F03D;margin-bottom:.5rem}
+.ex2-promo-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:1px;line-height:1.15;margin-bottom:.75rem}
+.ex2-promo p{font-size:.72rem;color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:1rem}
+.ex2-btn-solid{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.1rem;border-radius:8px;background:#C8F03D;color:#000;font-size:.72rem;font-weight:700;border:none;cursor:pointer;margin-bottom:.5rem;width:100%;justify-content:center}
+.ex2-btn-outline{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.1rem;border-radius:8px;background:transparent;color:#fff;font-size:.72rem;font-weight:700;border:1px solid rgba(255,255,255,.2);cursor:pointer;width:100%;justify-content:center}
+.ex2-load{text-align:center;margin-top:1.5rem;display:none}
+.ex2-load button{padding:.7rem 2rem;border-radius:50px;border:1px solid rgba(200,240,61,.3);background:rgba(200,240,61,.06);color:#C8F03D;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s}
+.ex2-load button:hover{background:#C8F03D;color:#000}
+@media(max-width:800px){.ex2-grid{grid-template-columns:1fr 1fr}.ex2-cols{flex-direction:column}.ex2-col+.ex2-col{border-left:none;border-top:1px solid rgba(255,255,255,.07);padding-top:1rem;margin-top:1rem}}
+@media(max-width:500px){.ex2-grid{grid-template-columns:1fr}}
+</style>
+
+<!-- FIND YOUR FOCUS -->
+<div class="ex2-tag">Build, Focus &amp; Training Goals</div>
+<div class="ex2-title">FIND YOUR <span class="ex2-accent">FOCUS</span></div>
+<div class="ex2-panel">
+  <div class="ex2-cols">
+    <!-- BUILD -->
+    <div class="ex2-col">
+      <div class="ex2-col-hd">Build</div>
+      <a class="ex2-link" data-kw="abs core" onclick="setEx2Filter('abs')">
+        <div class="ex2-thumb">🦾</div>
+        <div class="ex2-row-left"><div class="ex2-lname">Ab Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Core strength and definition</div></div>
+      </a>
+      <a class="ex2-link" data-kw="arms biceps triceps" onclick="setEx2Filter('arms')">
+        <div class="ex2-thumb">💪</div>
+        <div class="ex2-row-left"><div class="ex2-lname">Arm Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Biceps and triceps</div></div>
+      </a>
+      <a class="ex2-link" data-kw="back upper lower" onclick="setEx2Filter('back')">
+        <div class="ex2-thumb">🏋️</div>
+        <div class="ex2-row-left"><div class="ex2-lname">Back Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Upper and lower back</div></div>
+      </a>
+      <a class="ex2-link" data-kw="chest pectoral" onclick="setEx2Filter('chest')">
+        <div class="ex2-thumb">🛡️</div>
+        <div class="ex2-row-left"><div class="ex2-lname">Chest Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Pectoral muscles</div></div>
+      </a>
+      <a class="ex2-link" data-kw="glutes shape" onclick="setEx2Filter('glutes')">
+        <div class="ex2-thumb">🦵</div>
+        <div class="ex2-row-left"><div class="ex2-lname">Glute Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Shape and strengthen</div></div>
+      </a>
+      <a class="ex2-link" data-kw="legs quads hamstrings calves" onclick="setEx2Filter('legs')">
+        <div class="ex2-thumb">⚡</div>
+        <div class="ex2-row-left"><div class="ex2-lname">Leg Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Quads, hamstrings, calves</div></div>
+      </a>
+      <a class="ex2-link" data-kw="shoulders deltoids traps" onclick="setEx2Filter('shoulders')">
+        <div class="ex2-thumb">🔝</div>
+        <div class="ex2-row-left"><div class="ex2-lname">Shoulder Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Deltoids and traps</div></div>
+      </a>
+    </div>
+    <!-- FOCUS -->
+    <div class="ex2-col">
+      <div class="ex2-col-hd">Focus</div>
+      <a class="ex2-link" onclick="setEx2Filter('bodybuilding')"><div class="ex2-row-left"><div class="ex2-lname">Bodybuilding Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Muscle growth and aesthetics</div></div></a>
+      <a class="ex2-link" onclick="setEx2Filter('crossfit')"><div class="ex2-row-left"><div class="ex2-lname">Crossfit Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Functional fitness</div></div></a>
+      <a class="ex2-link" onclick="setEx2Filter('hiit')"><div class="ex2-row-left"><div class="ex2-lname">HIIT Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">High intensity intervals</div></div></a>
+      <a class="ex2-link" onclick="setEx2Filter('hyrox')"><div class="ex2-row-left"><div class="ex2-lname">Hyrox Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Endurance racing</div></div></a>
+      <a class="ex2-link" onclick="setEx2Filter('recovery')"><div class="ex2-row-left"><div class="ex2-lname">Recovery Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Active rest and healing</div></div></a>
+    </div>
+    <!-- TRAINING GOALS -->
+    <div class="ex2-col">
+      <div class="ex2-col-hd">Training Goals</div>
+      <a class="ex2-link" onclick="setEx2Filter('cardio')"><div class="ex2-row-left"><div class="ex2-lname">Cardio Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Heart health and stamina</div></div></a>
+      <a class="ex2-link" onclick="setEx2Filter('core')"><div class="ex2-row-left"><div class="ex2-lname">Core Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Stability and balance</div></div></a>
+      <a class="ex2-link" onclick="setEx2Filter('endurance')"><div class="ex2-row-left"><div class="ex2-lname">Endurance Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Extend workout capacity</div></div></a>
+      <a class="ex2-link" onclick="setEx2Filter('mobility')"><div class="ex2-row-left"><div class="ex2-lname">Mobility Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Flexibility and range</div></div></a>
+      <a class="ex2-link" onclick="setEx2Filter('strength')"><div class="ex2-row-left"><div class="ex2-lname">Strength Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Build power and force</div></div></a>
+      <a class="ex2-link" onclick="setEx2Filter('stretching')"><div class="ex2-row-left"><div class="ex2-lname">Stretching Exercises <i class="bi bi-arrow-up-right"></i></div><div class="ex2-lsub">Muscle recovery and flexibility</div></div></a>
+    </div>
+  </div>
+</div>
+
+<!-- PICK YOUR EQUIPMENT -->
+<div class="ex2-equip-hd">PICK YOUR <span class="ex2-accent">EQUIPMENT</span></div>
+<div class="ex2-equip-grid">
+  <a class="ex2-equip-box" onclick="setEx2Equip('barbell')"><i class="bi bi-bar-chart-steps"></i><span>Barbell</span></a>
+  <a class="ex2-equip-box" onclick="setEx2Equip('bodyweight')"><i class="bi bi-person-arms-up"></i><span>Bodyweight exercises</span></a>
+  <a class="ex2-equip-box" onclick="setEx2Equip('cable')"><i class="bi bi-diagram-3-fill"></i><span>Cable</span></a>
+  <a class="ex2-equip-box" onclick="setEx2Equip('dumbbell')"><i class="bi bi-collection-fill"></i><span>Dumbbell</span></a>
+  <a class="ex2-equip-box" onclick="setEx2Equip('foam')"><i class="bi bi-circle-fill"></i><span>Foam roller</span></a>
+  <a class="ex2-equip-box" onclick="setEx2Equip('kettlebell')"><i class="bi bi-droplet-fill"></i><span>Kettlebell</span></a>
+  <a class="ex2-equip-box" onclick="setEx2Equip('machine')"><i class="bi bi-gear-wide-connected"></i><span>Machine</span></a>
+  <a class="ex2-equip-box" onclick="setEx2Equip('medicine')"><i class="bi bi-record-circle-fill"></i><span>Medicine Ball</span></a>
+  <a class="ex2-equip-box" onclick="setEx2Equip('')"><i class="bi bi-three-dots"></i><span>Other</span></a>
+  <a class="ex2-equip-box" onclick="setEx2Equip('band')"><i class="bi bi-link-45deg"></i><span>Resistance Band</span></a>
+  <a class="ex2-equip-box" onclick="setEx2Equip('stability')"><i class="bi bi-disc-fill"></i><span>Stability ball</span></a>
+</div>
+
+<!-- SEARCH -->
+<div class="ex2-search-wrap">
+  <i class="bi bi-search si"></i>
+  <input type="text" id="ex2SearchInput" placeholder="Search..." oninput="ex2Render()">
+</div>
+
+<!-- EXERCISE CARDS GRID -->
+<div class="ex2-grid" id="ex2Grid"></div>
+<div class="ex2-load" id="ex2LoadWrap"><button onclick="ex2LoadMore()">Load More <i class="bi bi-chevron-down"></i></button></div>
+
+<script>
+var EX2_DATA=[
+  {name:'90 Degree Alternate Heel Touch',desc:'Trains controlled side bending for core control and coordination through slow, precise movement.',muscle:'Abs / Core',equip:'Bodyweight',tags:['Core','HIIT','Bodybuilding'],img:'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',cat:'abs'},
+  {name:'90 Degree Heel Touch',desc:'Builds controlled side-to-side core tension, helping improve stability and coordination.',muscle:'Abs / Core',equip:'Bodyweight',tags:['Core','HIIT','Bodybuilding'],img:'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',cat:'abs'},
+  {name:'90/90 Stretch',desc:'Improves hip mobility and control by guiding your hips through a stable, seated rotation position.',muscle:'Hips',equip:'Bodyweight',tags:['Stretching','Mobility','Recovery','Cool-down'],img:'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80',cat:'stretching'},
+  {name:'Abdominal Air Bike',desc:'Bodyweight core exercise combining controlled rotation with steady tension to build strength and endurance.',muscle:'Abs / Core',equip:'Bodyweight',tags:['Cardio','Endurance','HIIT','Crossfit'],img:'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',cat:'abs'},
+  {name:'Alternate Heel Touchers',desc:'Simple core exercise that builds control and endurance using small side-to-side movements under tension.',muscle:'Abs / Core',equip:'Bodyweight',tags:['Core','Endurance','HIIT','Recovery'],img:'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',cat:'abs'},
+  {name:'Barbell Bench Press',desc:'Foundational chest exercise used to build upper-body pushing strength with a barbell on a flat bench.',muscle:'Chest',equip:'Barbell',tags:['Strength','Powerlifting','Bodybuilding'],img:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80',cat:'chest'},
+  {name:'Barbell Squat',desc:'Foundational lower-body compound movement that builds strength in quads, glutes and the posterior chain.',muscle:'Legs',equip:'Barbell',tags:['Strength','Powerlifting','Bodybuilding'],img:'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=80',cat:'legs'},
+  {name:'Barbell Deadlift',desc:'Foundational strength exercise that builds full-body power and proper lifting mechanics from the floor.',muscle:'Legs / Back',equip:'Barbell',tags:['Strength','Powerlifting','Bodybuilding'],img:'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',cat:'back'},
+  {name:'Barbell Curl',desc:'Basic arm exercise that builds strength and size by lifting a bar through a controlled bending motion.',muscle:'Arms',equip:'Barbell',tags:['Strength','Bodybuilding'],img:'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',cat:'arms'},
+  {name:'Barbell Hip Thrust',desc:'Compound lower-body strength exercise that builds glute power through loaded hip extension movement.',muscle:'Glutes',equip:'Barbell',tags:['Strength','Bodybuilding','Powerlifting'],img:'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&q=80',cat:'glutes'},
+  {name:'Barbell Bent Over Row',desc:'Powerful compound exercise that builds back strength, improves posture and supports overall pulling performance.',muscle:'Back',equip:'Barbell',tags:['Strength','Bodybuilding','Powerlifting'],img:'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',cat:'back'},
+  {name:'Barbell Front Raise',desc:'Builds shoulder strength and control by lifting a fixed bar through a controlled front-to-shoulder range.',muscle:'Shoulders',equip:'Barbell',tags:['Strength','Bodybuilding'],img:'https://images.unsplash.com/photo-1532029837206-abbe267f536e?w=600&q=80',cat:'shoulders'},
+  {name:'Band Resisted Push Up',desc:'Push-up variation that increases upper-body strength by adding band resistance to the pressing movement.',muscle:'Chest',equip:'Band',tags:['Strength','HIIT','Bodybuilding'],img:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80',cat:'chest'},
+  {name:'Assisted Pull-Up',desc:'Helps build pulling strength by reducing bodyweight resistance making it easier to learn proper technique.',muscle:'Back',equip:'Machine',tags:['Strength','Bodybuilding','HIIT'],img:'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',cat:'back'},
+  {name:'Assault Bike Run',desc:'Full-body conditioning movement that uses steady pedaling and pushing to build stamina and work capacity.',muscle:'Full Body',equip:'Machine',tags:['Endurance','Cardio','HIIT','Crossfit'],img:'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=80',cat:'cardio'},
+  {name:'Barbell Lunge',desc:'Compound lower-body exercise that builds leg strength, balance and control through unilateral loading.',muscle:'Legs',equip:'Barbell',tags:['Strength','Bodybuilding','HIIT'],img:'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=80',cat:'legs'},
+  {name:'Barbell Clean And Jerk',desc:'Explosive full-body lift that builds power, coordination and total-body strength in one fluid movement.',muscle:'Full Body',equip:'Barbell',tags:['Strength','Crossfit','Powerlifting'],img:'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=80',cat:'crossfit'},
+  {name:'Back Extension On Stability Ball',desc:'Controlled bodyweight exercise that strengthens the lower back while improving balance and core control.',muscle:'Back',equip:'Stability',tags:['Strength','Core','Recovery'],img:'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',cat:'back'}
+];
+var ex2Cat='',ex2Equip='',ex2Page=1,ex2PageSize=8;
+function ex2Filtered(){
+  var q=(document.getElementById('ex2SearchInput')||{}).value||'';
+  q=q.toLowerCase();
+  return EX2_DATA.filter(function(e){
+    if(ex2Cat&&e.cat!==ex2Cat&&e.tags.join(' ').toLowerCase().indexOf(ex2Cat)<0)return false;
+    if(ex2Equip&&e.equip.toLowerCase().indexOf(ex2Equip)<0)return false;
+    if(q&&e.name.toLowerCase().indexOf(q)<0&&e.desc.toLowerCase().indexOf(q)<0&&e.tags.join(' ').toLowerCase().indexOf(q)<0)return false;
+    return true;
+  });
+}
+function ex2Render(){
+  ex2Page=1;ex2Draw();
+}
+function ex2Draw(){
+  var list=ex2Filtered();
+  var vis=list.slice(0,ex2Page*ex2PageSize);
+  var g=document.getElementById('ex2Grid');
+  var lw=document.getElementById('ex2LoadWrap');
+  lw.style.display=vis.length<list.length?'block':'none';
+  var html='';
+  vis.forEach(function(e,i){
+    var tags=e.tags.slice(0,3).map(function(t){return'<span class="ex2-pill">'+t+'</span>';}).join('');
+    var extra=e.tags.length>3?'<span class="ex2-pill">+'+(e.tags.length-3)+'</span>':'';
+    html+='<div class="ex2-card"><div class="ex2-img"><img src="'+e.img+'" alt="'+e.name+'" loading="lazy"></div><div class="ex2-body"><div class="ex2-cname">'+e.name+'</div><div class="ex2-cdesc">'+e.desc+'</div><div class="ex2-tags">'+tags+extra+'</div><div class="ex2-foot"><div class="ex2-equip-lbl"><i class="bi bi-grid-3x3-gap-fill"></i>'+e.equip+'</div><div class="ex2-arr"><i class="bi bi-arrow-up-right"></i></div></div></div></div>';
+  });
+  if(vis.length===0)html='<div style="grid-column:1/-1;text-align:center;padding:3rem;color:rgba(255,255,255,.3)"><i class="bi bi-search" style="font-size:2rem;display:block;margin-bottom:1rem"></i>No exercises found. Try different filters.</div>';
+  g.innerHTML=html;
+}
+function ex2LoadMore(){ex2Page++;ex2Draw();}
+function setEx2Filter(cat){ex2Cat=cat;ex2Equip='';ex2Render();}
+function setEx2Equip(eq){ex2Equip=eq;ex2Cat='';ex2Render();}
+document.addEventListener('DOMContentLoaded',ex2Draw);
+</script>
+</div>

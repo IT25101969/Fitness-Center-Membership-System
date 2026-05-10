@@ -1,4 +1,4 @@
-﻿package com.antigravity.fcms.model;
+﻿package com.fcms.model;
 
 import java.io.Serializable;
 
