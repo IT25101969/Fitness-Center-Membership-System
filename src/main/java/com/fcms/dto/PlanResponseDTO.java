@@ -1,6 +1,6 @@
 package com.fcms.dto;
 
-import com.fcms.model.MembershipPlan;
+import com.project.fcms.modules.plan.backend.model.MembershipPlan;
 
 import java.util.Arrays;
 import java.util.List;

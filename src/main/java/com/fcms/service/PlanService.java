@@ -1,7 +1,7 @@
-﻿package com.fcms.service;
+package com.fcms.service;
 
-import com.antigravity.fcms.modules.plan.backend.model.MembershipPlan;
-import com.antigravity.fcms.modules.plan.backend.repository.MembershipPlanRepository;
+import com.project.fcms.modules.plan.backend.model.MembershipPlan;
+import com.project.fcms.modules.plan.backend.repository.MembershipPlanRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
