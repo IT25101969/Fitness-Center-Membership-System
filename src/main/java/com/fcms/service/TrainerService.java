@@ -1,4 +1,4 @@
-package com.project.fcms.modules.trainer.backend.service;
+package com.fcms.service;
 
 import com.project.fcms.modules.trainer.backend.model.Trainer;
 import com.project.fcms.modules.trainer.backend.repository.TrainerRepository;
