@@ -1,7 +1,7 @@
-﻿package com.fcms.service;
+package com.project.fcms.modules.trainer.backend.service;
 
-import com.fcms.model.Trainer;
-import com.fcms.repository.TrainerRepository;
+import com.project.fcms.modules.trainer.backend.model.Trainer;
+import com.project.fcms.modules.trainer.backend.repository.TrainerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
