@@ -1,6 +1,6 @@
-﻿package com.fcms.repository;
+package com.fcms.repository;
 
-import com.antigravity.fcms.modules.trainer.backend.model.Trainer;
+import com.project.fcms.modules.trainer.backend.model.Trainer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

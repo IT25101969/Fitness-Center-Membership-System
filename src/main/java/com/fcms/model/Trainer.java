@@ -1,6 +1,6 @@
-﻿package com.fcms.model;
+package com.fcms.model;
 
-import com.antigravity.fcms.modules.auth.backend.model.Person;
+import com.project.fcms.modules.auth.backend.model.Person;
 import jakarta.persistence.*;
 
 /**

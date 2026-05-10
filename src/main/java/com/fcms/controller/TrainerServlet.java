@@ -1,7 +1,7 @@
-﻿package com.fcms.controller;
+package com.fcms.controller;
 
-import com.antigravity.fcms.modules.trainer.backend.model.Trainer;
-import com.antigravity.fcms.modules.trainer.backend.service.TrainerService;
+import com.project.fcms.modules.trainer.backend.model.Trainer;
+import com.project.fcms.modules.trainer.backend.service.TrainerService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -55,7 +55,7 @@ public class TrainerServlet extends HttpServlet {
             }
             case "/edit" -> {
                 String editId = req.getParameter("id");
-                com.antigravity.fcms.modules.trainer.backend.model.Trainer existing = trainerService.findById(editId);
+                Trainer existing = trainerService.findById(editId);
                 if (existing == null) {
                     resp.sendRedirect(req.getContextPath() + "/trainers?msg=notfound");
                     return;
@@ -157,7 +157,7 @@ public class TrainerServlet extends HttpServlet {
             return;
         }
         if (name == null || name.length() < 2) {
-            com.antigravity.fcms.modules.trainer.backend.model.Trainer t = trainerService.findById(id);
+            Trainer t = trainerService.findById(id);
             req.setAttribute("trainer", t);
             req.setAttribute("error", "Trainer name must be at least 2 characters.");
             req.setAttribute("pageTitle", "Edit Trainer");
@@ -165,7 +165,7 @@ public class TrainerServlet extends HttpServlet {
             return;
         }
         if (email == null || !email.contains("@")) {
-            com.antigravity.fcms.modules.trainer.backend.model.Trainer t = trainerService.findById(id);
+            Trainer t = trainerService.findById(id);
             req.setAttribute("trainer", t);
             req.setAttribute("error", "A valid email address is required.");
             req.setAttribute("pageTitle", "Edit Trainer");
