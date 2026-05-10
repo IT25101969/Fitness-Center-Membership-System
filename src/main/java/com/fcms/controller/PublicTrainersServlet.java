@@ -1,7 +1,7 @@
-package com.fcms.controller;
+package com.project.fcms.modules.trainer.backend.controller;
 
-import com.antigravity.fcms.modules.trainer.backend.model.Trainer;
-import com.antigravity.fcms.modules.trainer.backend.service.TrainerService;
+import com.project.fcms.modules.trainer.backend.model.Trainer;
+import com.project.fcms.modules.trainer.backend.service.TrainerService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
