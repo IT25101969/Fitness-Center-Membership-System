@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Supplements & Nutrition — APEX FITNESS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
+  <style>
+    :root{--accent:#C8F03D;--black:#0a0a0a;--card:#0f0f0f;--card2:#141414;--border:rgba(255,255,255,.07);--gray:rgba(255,255,255,.45);--white:#fff;--font-display:'Bebas Neue',sans-serif;--font-body:'Inter',sans-serif;}
+    *{margin:0;padding:0;box-sizing:border-box;}body{background:var(--black);color:#fff;font-family:var(--font-body);min-height:100vh;overflow-x:hidden;}::selection{background:var(--accent);color:#000;}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+    .nav-logo{font-family:var(--font-display);font-size:1.6rem;color:#fff;text-decoration:none;letter-spacing:2px;}.nav-logo span{color:var(--accent);}
+    .nav-back{color:var(--gray);text-decoration:none;font-size:.82rem;font-weight:600;display:flex;align-items:center;gap:.5rem;transition:color .2s;}.nav-back:hover{color:var(--accent);}
+    .hero{position:relative;padding:7rem 3rem 3rem;overflow:hidden;max-width:1260px;margin:0 auto;}
+    .hero::before{content:'';position:absolute;top:0;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(200,240,61,.06) 0%,transparent 70%);pointer-events:none;}
+    .hero-tag{font-size:.65rem;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;}
+    .hero-title{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.5rem);letter-spacing:3px;line-height:1;margin-bottom:.8rem;}.hero-title span{color:var(--accent);}
+    .hero-sub{color:var(--gray);font-size:.88rem;line-height:1.7;max-width:520px;margin-bottom:2rem;}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:1200px;margin:0 auto;padding:0 3rem 2.5rem;}
+    .stat{background:linear-gradient(135deg,var(--card2),var(--card));border:1px solid var(--border);border-radius:14px;padding:1.2rem;text-align:center;position:relative;overflow:hidden;}
+    .stat::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.3;}
+    .stat-val{font-family:var(--font-display);font-size:2rem;color:var(--accent);}.stat-lbl{font-size:.62rem;color:var(--gray);margin-top:.15rem;text-transform:uppercase;letter-spacing:2px;font-weight:600;}
+    .filter-section{max-width:1200px;margin:0 auto;padding:0 3rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .filter-row{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;}
+    .f-btn{padding:.45rem 1.1rem;border-radius:50px;border:1px solid var(--border);background:transparent;color:var(--gray);font-size:.7rem;font-weight:700;cursor:pointer;transition:all .25s;}
+    .f-btn:hover{border-color:rgba(200,240,61,.3);color:#fff;}.f-btn.active{background:var(--accent);color:#000;border-color:var(--accent);box-shadow:0 4px 16px rgba(200,240,61,.2);}
+    .count-text{font-size:.78rem;color:var(--gray);}.count-text b{color:var(--white);}
+    .grid-section{max-width:1200px;margin:0 auto;padding:0 3rem 4rem;}
+    .supp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;}
+    .s-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .3s ease;display:flex;flex-direction:column;position:relative;}
+    .s-card:hover{border-color:rgba(200,240,61,.25);transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.5);}
+    .s-badge{position:absolute;top:.7rem;left:.7rem;font-size:.55rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:.2rem .6rem;border-radius:20px;z-index:2;backdrop-filter:blur(6px);}
+    .s-badge.protein{background:rgba(200,240,61,.15);border:1px solid rgba(200,240,61,.3);color:var(--accent);}
+    .s-badge.creatine{background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);color:#60a5fa;}
+    .s-badge.preworkout{background:rgba(248,113,113,.15);border:1px solid rgba(248,113,113,.3);color:#f87171;}
+    .s-badge.bcaa{background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#a78bfa;}
+    .s-badge.vitamins{background:rgba(52,211,153,.15);border:1px solid rgba(52,211,153,.3);color:#34d399;}
+    .s-badge.gainer{background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.3);color:#fbbf24;}
+    .s-badge.burner{background:rgba(251,146,60,.15);border:1px solid rgba(251,146,60,.3);color:#fb923c;}
+    .s-img{height:180px;display:flex;align-items:center;justify-content:center;padding:1.2rem;background:linear-gradient(135deg,rgba(20,20,20,1),rgba(15,15,15,1));}
+    .s-img img{max-height:100%;max-width:100%;object-fit:contain;transition:transform .4s;}.s-card:hover .s-img img{transform:scale(1.06);}
+    .s-body{padding:1rem 1.2rem 1.3rem;display:flex;flex-direction:column;flex:1;}
+    .s-brand{font-size:.6rem;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:.25rem;}
+    .s-name{font-weight:800;font-size:.88rem;line-height:1.35;margin-bottom:.4rem;min-height:38px;}
+    .s-desc{font-size:.7rem;color:var(--gray);line-height:1.6;margin-bottom:.8rem;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+    .s-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:.8rem;border-top:1px solid var(--border);}
+    .s-price{font-family:var(--font-display);font-size:1.3rem;color:var(--accent);letter-spacing:1px;}
+    .s-buy{padding:.45rem .9rem;border-radius:8px;border:1px solid rgba(200,240,61,.3);background:rgba(200,240,61,.08);color:var(--accent);font-size:.68rem;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.3rem;}
+    .s-buy:hover{background:var(--accent);color:#000;border-color:var(--accent);transform:scale(1.05);}
+    .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(120px);background:rgba(20,20,30,.95);color:#fff;padding:1rem 2rem;border-radius:12px;font-size:.82rem;font-weight:600;z-index:9999;transition:transform .4s ease;border:1px solid rgba(200,240,61,.2);box-shadow:0 8px 32px rgba(0,0,0,.5);backdrop-filter:blur(10px);}
+    .toast.show{transform:translateX(-50%) translateY(0);}.toast i{color:var(--accent);margin-right:.5rem;}
+    @media(max-width:1024px){.supp-grid{grid-template-columns:repeat(3,1fr);}}
+    @media(max-width:768px){.supp-grid{grid-template-columns:repeat(2,1fr);}.stats{grid-template-columns:repeat(2,1fr);padding:0 1.5rem 2rem;}.hero,.filter-section,.grid-section{padding-left:1.5rem;padding-right:1.5rem;}.nav{padding:1rem 1.5rem;}}
+    @media(max-width:480px){.supp-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<nav class="nav"><a href="/" class="nav-logo">APEX<span>FITNESS</span></a><a href="/" class="nav-back"><i class="bi bi-arrow-left"></i> Back to Home</a></nav>
+
+<div class="hero">
+  <div class="hero-tag"><i class="bi bi-capsule"></i> PREMIUM NUTRITION</div>
+  <h1 class="hero-title">SUPPLEMENTS <span>& NUTRITION</span></h1>
+  <p class="hero-sub">Fuel your gains with top-tier nutrition products handpicked by our certified trainers. All products are 100% authentic and lab-tested.</p>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-val">12</div><div class="stat-lbl">Products</div></div>
+  <div class="stat"><div class="stat-val">7</div><div class="stat-lbl">Categories</div></div>
+  <div class="stat"><div class="stat-val">8</div><div class="stat-lbl">Brands</div></div>
+  <div class="stat"><div class="stat-val">100%</div><div class="stat-lbl">Authentic</div></div>
+</div>
+
+<div class="filter-section">
+  <div class="filter-row">
+    <button class="f-btn active" onclick="fil('all',this)">All</button>
+    <button class="f-btn" onclick="fil('protein',this)">Protein</button>
+    <button class="f-btn" onclick="fil('creatine',this)">Creatine</button>
+    <button class="f-btn" onclick="fil('preworkout',this)">Pre-Workout</button>
+    <button class="f-btn" onclick="fil('bcaa',this)">BCAA</button>
+    <button class="f-btn" onclick="fil('gainer',this)">Mass Gainer</button>
+    <button class="f-btn" onclick="fil('vitamins',this)">Vitamins</button>
+    <button class="f-btn" onclick="fil('burner',this)">Fat Burner</button>
+  </div>
+  <div class="count-text" id="countText">Showing <b>12</b> of <b>12</b> products</div>
+</div>
+
+<div class="grid-section">
+  <div class="supp-grid" id="suppGrid">
+
+    <div class="s-card" data-cat="protein"><span class="s-badge protein">Protein</span>
+      <div class="s-img"><img src="https://fitnessisland.lk/cdn/shop/files/image-removebg-preview_19_b6335e67-cb44-4e3c-aa33-0e5f7e0d6a5d_1024x1024.png" alt="MuscleTech Nitro Tech"></div>
+      <div class="s-body"><div class="s-brand">MuscleTech</div><div class="s-name">Nitro Tech Whey Protein</div><div class="s-desc">30g protein per serving. Advanced whey isolate formula for lean muscle and recovery.</div>
+        <div class="s-bottom"><div class="s-price">RS. 15,000</div><button class="s-buy" onclick="buy('Nitro Tech Whey')"><i class="bi bi-cart-plus"></i> Buy</button></div></div></div>
+
+    <div class="s-card" data-cat="protein"><span class="s-badge protein">Protein</span>
+      <div class="s-img"><img src="https://fitnessisland.lk/cdn/shop/files/image-removebg-preview_15_ebae186e-6a80-49ad-9d7b-d4faeeadb1a0_1024x1024.png" alt="Applied Critical Whey"></div>
+      <div class="s-body"><div class="s-brand">Applied Nutrition</div><div class="s-name">Critical Whey Protein</div><div class="s-desc">24g protein per serving. Premium blend for everyday muscle support and growth.</div>
+        <div class="s-bottom"><div class="s-price">RS. 14,500</div><button class="s-buy" onclick="buy('Critical Whey')"><i class="bi bi-cart-plus"></i> Buy</button></div></div></div>
+
+    <div class="s-card" data-cat="protein"><span class="s-badge protein">Protein</span>
+      <div class="s-img"><img src="https://fitnessisland.lk/cdn/shop/files/5146_0f4b0454aca7_1024x1024.webp" alt="Scitec Whey Pro"></div>
+      <div class="s-body"><div class="s-brand">Scitec Nutrition</div><div class="s-name">100% Whey Protein Professional</div><div class="s-desc">22g protein with added amino acids. European quality whey concentrate blend.</div>
+        <div class="s-bottom"><div class="s-price">RS. 16,000</div><button class="s-buy" onclick="buy('Scitec Whey Pro')"><i class="bi bi-cart-plus"></i> Buy</button></div></div></div>
+
+    <div class="s-card" data-cat="protein"><span class="s-badge protein">Protein</span>
+      <div class="s-img"><img src="https://fitnessisland.lk/cdn/shop/files/DymatizeISO100_1024x1024.png" alt="Dymatize ISO100"></div>
+      <div class="s-body"><div class="s-brand">Dymatize</div><div class="s-name">ISO100 Hydrolyzed Isolate</div><div class="s-desc">25g hydrolyzed whey isolate. Ultra-fast absorption for serious athletes.</div>
+        <div class="s-bottom"><div class="s-price">RS. 18,000</div><button class="s-buy" onclick="buy('ISO100 Hydrolyzed')"><i class="bi bi-cart-plus"></i> Buy</button></div></div></div>
+
+    <div class="s-card" data-cat="protein"><span class="s-badge protein">Protein</span>
+      <div class="s-img"><img src="https://fitnessisland.lk/cdn/shop/files/extremegold_1024x1024.jpg" alt="ON Gold Standard" style="border-radius:8px"></div>
+      <div class="s-body"><div class="s-brand">Optimum Nutrition</div><div class="s-name">Gold Standard 100% Whey</div><div class="s-desc">24g protein per serving. The world's best-selling whey protein for over 20 years.</div>
+        <div class="s-bottom"><div class="s-price">RS. 20,000</div><button class="s-buy" onclick="buy('ON Gold Standard')"><i class="bi bi-cart-plus"></i> Buy</button></div></div></div>
+
+    <div class="s-card" data-cat="protein"><span class="s-badge protein">Protein</span>
+      <div class="s-img"><img src="https://fitnessisland.lk/cdn/shop/files/image-removebg-preview_22_2830b01d-d93f-40a7-a2d0-ae6a34c53586_1024x1024.png" alt="BPI ISO HD"></div>
+      <div class="s-body"><div class="s-brand">BPI Sports</div><div class="s-name">ISO HD Isolate Protein</div><div class="s-desc">25g pure whey isolate. Zero sugar, ultra-clean formula for lean gains.</div>
+        <div class="s-bottom"><div class="s-price">RS. 16,500</div><button class="s-buy" onclick="buy('BPI ISO HD')"><i class="bi bi-cart-plus"></i> Buy</button></div></div></div>
+
+    <div class="s-card" data-cat="creatine"><span class="s-badge creatine">Creatine</span>
+      <div class="s-img"><img src="https://fitnessisland.lk/cdn/shop/files/NitroTechwheyGold2.27KG_1024x1024.png" alt="Creatine Monohydrate"></div>
+      <div class="s-body"><div class="s-brand">MuscleTech</div><div class="s-name">Platinum Creatine Monohydrate</div><div class="s-desc">5g pure creatine per serving. Enhances strength, power, and muscle recovery.</div>
+        <div class="s-bottom"><div class="s-price">RS. 3,200</div><button class="s-buy" onclick="buy('Creatine Monohydrate')"><i class="bi bi-cart-plus"></i> Buy</button></div></div></div>
+
+    <div class="s-card" data-cat="preworkout"><span class="s-badge preworkout">Pre-Workout</span>
+      <div class="s-img"><img src="https://fitnessisland.lk/cdn/shop/files/MusclemedsCarnivore4lbs_1024x1024.png" alt="C4 Original"></div>
+      <div class="s-body"><div class="s-brand">Cellucor</div><div class="s-name">C4 Original Pre-Workout</div><div class="s-desc">Explosive energy, heightened focus and an overwhelming urge to crush your workout.</div>
+        <div class="s-bottom"><div class="s-price">RS. 5,500</div><button class="s-buy" onclick="buy('C4 Pre-Workout')"><i class="bi bi-cart-plus"></i> Buy</button></div></div></div>
+
+    <div class="s-card" data-cat="bcaa"><span class="s-badge bcaa">BCAA</span>
+      <div class="s-img"><img src="https://fitnessisland.lk/cdn/shop/files/image-removebg-preview_19_b6335e67-cb44-4e3c-aa33-0e5f7e0d6a5d_1024x1024.png" alt="BCAA"></div>
+      <div class="s-body"><div class="s-brand">Scivation</div><div class="s-name">Xtend BCAA Recovery</div><div class="s-desc">7g BCAAs per serving. Intra-workout hydration and muscle recovery formula.</div>
+        <div class="s-bottom"><div class="s-price">RS. 6,800</div><button class="s-buy" onclick="buy('Xtend BCAA')"><i class="bi bi-cart-plus"></i> Buy</button></div></div></div>
+
+    <div class="s-card" data-cat="gainer"><span class="s-badge gainer">Mass Gainer</span>
+      <div class="s-img"><img src="https://fitnessisland.lk/cdn/shop/files/image-removebg-preview_15_ebae186e-6a80-49ad-9d7b-d4faeeadb1a0_1024x1024.png" alt="Serious Mass"></div>
+      <div class="s-body"><div class="s-brand">Optimum Nutrition</div><div class="s-name">Serious Mass Weight Gainer</div><div class="s-desc">1,250 calories per serving. High-protein mass gainer for hard gainers.</div>
+        <div class="s-bottom"><div class="s-price">RS. 12,500</div><button class="s-buy" onclick="buy('Serious Mass')"><i class="bi bi-cart-plus"></i> Buy</button></div></div></div>
+
+    <div class="s-card" data-cat="vitamins"><span class="s-badge vitamins">Vitamins</span>
+      <div class="s-img"><img src="https://fitnessisland.lk/cdn/shop/files/DymatizeISO100_1024x1024.png" alt="Multivitamin"></div>
+      <div class="s-body"><div class="s-brand">Universal Nutrition</div><div class="s-name">Animal Pak Multivitamin</div><div class="s-desc">Complete vitamin and mineral stack. Essential micronutrients for peak performance.</div>
+        <div class="s-bottom"><div class="s-price">RS. 7,200</div><button class="s-buy" onclick="buy('Animal Pak')"><i class="bi bi-cart-plus"></i> Buy</button></div></div></div>
+
+    <div class="s-card" data-cat="burner"><span class="s-badge burner">Fat Burner</span>
+      <div class="s-img"><img src="https://fitnessisland.lk/cdn/shop/files/MusclemedsCarnivore4lbs_1024x1024.png" alt="Hydroxycut"></div>
+      <div class="s-body"><div class="s-brand">MuscleTech</div><div class="s-name">Hydroxycut Hardcore Elite</div><div class="s-desc">Thermogenic fat burner with green coffee extract. Boost metabolism and shed fat fast.</div>
+        <div class="s-bottom"><div class="s-price">RS. 4,800</div><button class="s-buy" onclick="buy('Hydroxycut')"><i class="bi bi-cart-plus"></i> Buy</button></div></div></div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+  function fil(cat,btn){
+    document.querySelectorAll('.f-btn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');
+    var cards=document.querySelectorAll('.s-card'),shown=0,total=cards.length;
+    cards.forEach(function(c){var m=cat==='all'||c.dataset.cat===cat;c.style.display=m?'':'none';if(m)shown++;});
+    document.getElementById('countText').innerHTML='Showing <b>'+shown+'</b> of <b>'+total+'</b> products';
+  }
+  function buy(n){var t=document.getElementById('toast');t.innerHTML='<i class="bi bi-check-circle-fill"></i> '+n+' added to your order!';t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2500);}
+</script>
+</body>
+</html>
