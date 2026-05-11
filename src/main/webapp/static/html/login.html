@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Login — APEX FITNESS</title>
+<meta name="description" content="Sign in to your APEX FITNESS member portal to track workouts, nutrition, and membership.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+
+<div class="auth-page">
+
+  <!-- LEFT PANEL -->
+  <div class="auth-brand-panel">
+    <a href="/" style="font-family:var(--font-display);font-size:1.6rem;letter-spacing:3px;color:#fff;text-decoration:none;">APEX<span style="color:var(--accent);">FITNESS</span></a>
+
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0;position:relative;z-index:1;">
+      <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(200,240,61,.08);border:1px solid rgba(200,240,61,.2);color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.45rem 1rem;border-radius:50px;margin-bottom:2rem;width:fit-content;">
+        <i class="bi bi-person-check-fill"></i> APEX Portal
+      </div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(3.5rem,5vw,5.5rem);line-height:.95;letter-spacing:2px;margin-bottom:1.5rem;">WELCOME<br>BACK TO<br><span style="color:var(--accent);">APEX</span></h1>
+      <p style="color:var(--text-muted);font-size:.95rem;line-height:1.7;max-width:380px;">Sign in to access your dashboard. Use your member email or admin credentials to continue.</p>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:1rem;font-size:.78rem;color:var(--text-muted);">
+      <div style="width:8px;height:8px;background:#4ade80;border-radius:50%;box-shadow:0 0 8px rgba(74,222,128,.6);"></div>
+      <span>APEX FITNESS is currently <strong>Open</strong> · Colombo 00300</span>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div style="display:flex;align-items:center;justify-content:center;padding:2rem;background:var(--bg);position:relative;">
+    <div style="width:100%;max-width:420px;">
+
+      <a href="/" style="display:inline-flex;align-items:center;gap:.4rem;color:var(--text-muted);font-size:.8rem;text-decoration:none;margin-bottom:1.5rem;">
+        <i class="bi bi-arrow-left"></i> Back to website
+      </a>
+
+      <div class="auth-card">
+        <div style="text-align:center;margin-bottom:2rem;">
+          <div style="width:56px;height:56px;background:rgba(200,240,61,.08);border:1px solid rgba(200,240,61,.2);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.4rem;color:var(--accent);">
+            <i class="bi bi-box-arrow-in-right"></i>
+          </div>
+          <h2 style="font-family:var(--font-display);font-size:2rem;letter-spacing:2px;">SIGN <span style="color:var(--accent);">IN</span></h2>
+          <p style="font-size:.82rem;color:var(--text-muted);">Member email or admin username</p>
+        </div>
+
+        <form id="loginForm" action="/member-login" method="post">
+          <div class="auth-field">
+            <label for="email">Email or Username</label>
+            <div style="position:relative;">
+              <input type="text" id="email" name="email" placeholder="you@example.com or admin" required autocomplete="username" style="padding-left:2.75rem;">
+              <i class="bi bi-person-fill" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.25);pointer-events:none;"></i>
+            </div>
+          </div>
+
+          <div class="auth-field">
+            <label for="password">Password</label>
+            <div style="position:relative;">
+              <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password" style="padding-left:2.75rem;">
+              <i class="bi bi-lock-fill" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.25);pointer-events:none;"></i>
+              <button type="button" id="togglePw" style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.25);cursor:pointer;font-size:1rem;padding:0;">
+                <i class="bi bi-eye-fill" id="pwIcon"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="auth-submit">
+            <i class="bi bi-box-arrow-in-right"></i> Sign In
+          </button>
+        </form>
+
+        <div style="display:flex;align-items:center;gap:.75rem;margin:1.5rem 0;color:rgba(255,255,255,.15);font-size:.75rem;">
+          <span style="flex:1;height:1px;background:rgba(255,255,255,.07);"></span> or
+          <span style="flex:1;height:1px;background:rgba(255,255,255,.07);"></span>
+        </div>
+
+        <div style="text-align:center;">
+          <a href="/member-register" style="color:var(--accent);font-size:.83rem;text-decoration:none;font-weight:600;">
+            <i class="bi bi-person-plus-fill"></i> Don't have an account? Register free
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="../js/auth.js"></script>
+</body>
+</html>
