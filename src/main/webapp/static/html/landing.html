@@ -1,0 +1,1728 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>APEX FITNESS — Premium Gym &amp; Wellness Center</title>
+<meta name="description" content="Join APEX FITNESS — Sri Lanka's most premium gym. World-class trainers, state-of-the-art equipment, flexible plans.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="../../../../static/css/landing.css?v=8">
+<script>
+/* Inline preloader — runs immediately, independent of external JS */
+window.addEventListener('DOMContentLoaded', function() {
+  var loader = document.getElementById('preloader');
+  var bar    = document.getElementById('preloaderBar');
+  var pct    = document.getElementById('preloaderPct');
+  if (!loader || !bar || !pct) return;
+  if (loader.classList.contains('hidden')) return;
+  var prog = 0;
+  var interval = setInterval(function() {
+    prog += Math.random() * 18 + 4;
+    if (prog >= 100) { prog = 100; clearInterval(interval); }
+    bar.style.width = prog + '%';
+    pct.textContent = Math.round(prog) + '%';
+    if (prog >= 100) {
+      setTimeout(function() { loader.classList.add('hidden'); }, 350);
+    }
+  }, 60);
+});
+</script>
+</head>
+<body>
+
+<!-- ── PRELOADER ────────────────────────────────────── -->
+<div id="preloader" class="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-logo">APEX<span>FITNESS</span></div>
+    <div class="preloader-bar-wrap"><div class="preloader-bar" id="preloaderBar"></div></div>
+    <div class="preloader-pct" id="preloaderPct">0%</div>
+  </div>
+</div>
+
+<!-- ── CUSTOM CURSOR ──────────────────────────────── -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Particle Canvas -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- ── NAV ───────────────────────────────────────────── -->
+<nav id="navbar" class="nav">
+  <a href="#" class="nav-logo">APEX<span>FITNESS</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="/modules/trainer/frontend/html/classes.html">Classes</a></li>
+    <li><a href="our-trainers">Trainers</a></li>
+
+    <li><a href="exercises">Exercises</a></li>
+    <li><a href="meal-plans">Nutrition</a></li>
+    <li><a href="shop-supplements">Supplements</a></li>
+    <li><a href="#pricing">Plans</a></li>
+  </ul>
+  <div class="nav-cta">
+    <!-- Gym Status Pill -->
+    <div class="gym-status" id="gymStatus">
+      <span class="gym-status-dot"></span>
+      <span class="gym-status-text" id="gymStatusText">Open Now</span>
+    </div>
+
+    <!-- GUEST state: shown when NOT logged in -->
+    <div id="navGuestButtons" style="display:flex;align-items:center;gap:.75rem;">
+      <a href="member-register" class="btn-outline-nav"><i class="bi bi-person-plus"></i> Join Now</a>
+      <a href="member-login" class="btn-primary-nav" style="text-decoration:none;"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+    </div>
+
+    <!-- MEMBER state: shown when logged in -->
+    <div id="navProfileWrap" class="nav-profile-wrap" style="display:none;">
+      <button class="nav-profile-btn" id="navProfileBtn" aria-label="Member menu" aria-expanded="false" aria-haspopup="true">
+        <div class="nav-avatar" id="navAvatar">?</div>
+        <span class="nav-profile-name" id="navProfileName">Member</span>
+        <svg class="nav-chevron-svg" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <!-- Dropdown -->
+      <div class="nav-profile-dropdown" id="navProfileDropdown" role="menu">
+        <div class="nav-dd-greeting" id="navDdGreeting">Welcome back!</div>
+        <div class="nav-dd-divider"></div>
+        <a href="member-profile" class="nav-dd-item" role="menuitem">
+          <i class="bi bi-columns-gap"></i>
+          <span>Member Dashboard</span>
+          <svg class="nav-dd-arrow" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1L5 5L1 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="logout" class="nav-dd-item nav-dd-item--danger" role="menuitem">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+  <button class="hamburger" id="hamburger"><i class="bi bi-list"></i></button>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="../../../../static/images/hero.png" alt="Apex Fitness Hero" class="hero-img">
+    <div class="hero-overlay"></div>
+  </div>
+  <!-- Animated rings -->
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
+  <div class="hero-content reveal">
+    <span class="hero-tag">EST. 2020 · COLOMBO, SRI LANKA</span>
+    <h1 class="hero-title">PUSH YOUR<br><span class="accent">LIMITS</span></h1>
+    <p class="hero-sub">Transform your body and mind in Sri Lanka's most premium fitness environment. Expert trainers, elite equipment, real results.</p>
+    <div class="hero-actions">
+    <a href="#pricing" class="btn-hero">View Plans <i class="bi bi-arrow-right"></i></a>
+      <a href="#classes" class="btn-ghost">View Classes</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num" data-target="5000">0</span><span>+</span><p>Members</p></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-num" data-target="50">0</span><span>+</span><p>Trainers</p></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-num" data-target="98">0</span><span>%</span><p>Satisfaction</p></div>
+    </div>
+  </div>
+  <div class="scroll-indicator"><span></span></div>
+</section>
+
+<!-- ── TICKER ────────────────────────────────────────── -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <!-- Set 1 -->
+    <div class="ticker-set">
+      <span class="ticker-item"><i class="bi bi-lightning-charge-fill"></i> STRENGTH TRAINING</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-heart-pulse-fill"></i> CARDIO &amp; HIIT</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-person-arms-up"></i> YOGA &amp; MINDFULNESS</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-egg-fried"></i> NUTRITION COACHING</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-person-fill"></i> PERSONAL TRAINING</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-music-note-beamed"></i> ZUMBA &amp; DANCE</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-trophy-fill"></i> BODY SCULPTING</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-water"></i> SWIMMING &amp; AQUA FIT</span>
+      <span class="ticker-sep">✦</span>
+    </div>
+    <!-- Set 2 (duplicate for seamless loop) -->
+    <div class="ticker-set">
+      <span class="ticker-item"><i class="bi bi-lightning-charge-fill"></i> STRENGTH TRAINING</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-heart-pulse-fill"></i> CARDIO &amp; HIIT</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-person-arms-up"></i> YOGA &amp; MINDFULNESS</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-egg-fried"></i> NUTRITION COACHING</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-person-fill"></i> PERSONAL TRAINING</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-music-note-beamed"></i> ZUMBA &amp; DANCE</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-trophy-fill"></i> BODY SCULPTING</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item"><i class="bi bi-water"></i> SWIMMING &amp; AQUA FIT</span>
+      <span class="ticker-sep">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── ABOUT ─────────────────────────────────────────── -->
+<section class="about section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal-left">
+        <img src="../../../../static/images/trainer.png" alt="Expert Trainer" class="about-img">
+        <div class="about-badge"><i class="bi bi-award-fill"></i><div><strong>10+ Years</strong><small>Expert Training</small></div></div>
+      </div>
+      <div class="about-content reveal-right">
+        <span class="section-tag">About Apex Fitness</span>
+        <h2 class="section-title">MORE THAN A GYM.<br>IT'S A <span class="accent">LIFESTYLE.</span></h2>
+        <p>APEX FITNESS was built for those who refuse to settle. Our world-class facility combines cutting-edge equipment, science-backed training programs, and a community that pushes you every single day.</p>
+        <p>From beginners finding their first step to elite athletes preparing for competition — APEX has a program, a trainer, and a plan for you.</p>
+        <div class="about-features">
+          <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>ISO Certified Equipment</span></div>
+          <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>24/7 Access with Premium Plans</span></div>
+          <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Personalised Training Programs</span></div>
+          <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Nutritionist Consultations</span></div>
+        </div>
+        <a href="#pricing" class="btn-hero" style="display:inline-flex;margin-top:2rem;">Get Started <i class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ───────────────────────────────────────── -->
+<section class="services section" id="services">
+  <div class="services-bg-img"><img src="../../../../static/images/gym-interior.png" alt="Gym Interior"><div class="services-overlay"></div></div>
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">What We Offer</span>
+      <h2 class="section-title">WORLD-CLASS<br><span class="accent">SERVICES</span></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal stagger-child"><div class="service-icon"><i class="bi bi-lightning-charge-fill"></i></div><h3>Strength &amp; Power</h3><p>Olympic lifting platforms, power racks, and free weight zones designed for maximum performance.</p></div>
+      <div class="service-card reveal stagger-child"><div class="service-icon"><i class="bi bi-heart-pulse-fill"></i></div><h3>Cardio Zone</h3><p>50+ cardio machines including treadmills, ellipticals, bikes, and rowing machines with live metrics.</p></div>
+      <div class="service-card reveal stagger-child"><div class="service-icon"><i class="bi bi-person-arms-up"></i></div><h3>Personal Training</h3><p>1-on-1 sessions with certified expert trainers who build programs specifically for your goals.</p></div>
+      <div class="service-card reveal stagger-child"><div class="service-icon"><i class="bi bi-people-fill"></i></div><h3>Group Classes</h3><p>30+ weekly classes including HIIT, yoga, Zumba, spin, and functional fitness for all levels.</p></div>
+      <div class="service-card reveal"><div class="service-icon"><i class="bi bi-water"></i></div><h3>Recovery &amp; Spa</h3><p>Sauna, steam room, ice bath, and massage therapy to maximise recovery and performance.</p></div>
+      <div class="service-card reveal"><div class="service-icon"><i class="bi bi-graph-up-arrow"></i></div><h3>Body Analysis</h3><p>InBody scanning, VO2 max testing, and regular check-ins to track your progress scientifically.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CLASSES ────────────────────────────────────────── -->
+<section class="classes section" id="classes">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Weekly Schedule</span>
+      <h2 class="section-title">OUR <span class="accent">CLASSES</span></h2>
+    </div>
+    <div class="classes-grid">
+      <div class="class-card">
+        <img src="../../../../static/images/workout-class.png" alt="HIIT Class">
+        <div class="class-info"><span class="class-tag">High Intensity</span><h3>HIIT BLAST</h3><p>Mon, Wed, Fri · 06:00 &amp; 18:00</p><div class="class-meta"><span><i class="bi bi-clock"></i> 45 min</span><span><i class="bi bi-people"></i> 20 spots</span><span><i class="bi bi-fire"></i> 600+ kcal</span></div></div>
+      </div>
+      <div class="class-card">
+        <img src="../../../../static/images/gym-interior.png" alt="Strength Class">
+        <div class="class-info"><span class="class-tag">Strength</span><h3>POWER LIFT</h3><p>Tue, Thu, Sat · 07:00 &amp; 17:00</p><div class="class-meta"><span><i class="bi bi-clock"></i> 60 min</span><span><i class="bi bi-people"></i> 15 spots</span><span><i class="bi bi-fire"></i> 400+ kcal</span></div></div>
+      </div>
+      <div class="class-card">
+        <img src="../../../../static/images/trainer.png" alt="Yoga Class">
+        <div class="class-info"><span class="class-tag">Mind &amp; Body</span><h3>FLOW YOGA</h3><p>Daily · 07:30 &amp; 19:00</p><div class="class-meta"><span><i class="bi bi-clock"></i> 60 min</span><span><i class="bi bi-people"></i> 25 spots</span><span><i class="bi bi-fire"></i> 200+ kcal</span></div></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="schedule" class="btn-hero">View Full Schedule <i class="bi bi-calendar3"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── NUTRITION ───────────────────────────────────────── -->
+<section class="nutrition section" id="nutrition">
+  <div class="container">
+    <div class="nutrition-grid">
+      <div class="nutrition-content">
+        <span class="section-tag">Fuel Your Body</span>
+        <h2 class="section-title">NUTRITION<br><span class="accent">COACHING</span></h2>
+        <p>Fitness is built in the gym but revealed in the kitchen. Our certified nutritionists craft personalised meal plans that match your training intensity, lifestyle, and goals.</p>
+        <div class="nutrition-items">
+          <div class="nut-item"><i class="bi bi-check2-circle"></i><div><strong>Custom Meal Plans</strong><p>Tailored macros and calories for your specific body type and goals.</p></div></div>
+          <div class="nut-item"><i class="bi bi-check2-circle"></i><div><strong>Supplement Guidance</strong><p>Science-backed supplement recommendations to enhance performance.</p></div></div>
+          <div class="nut-item"><i class="bi bi-check2-circle"></i><div><strong>Weekly Check-ins</strong><p>Regular consultations to adjust your plan as your body evolves.</p></div></div>
+        </div>
+        <a href="meal-plans" class="btn-hero" style="margin-top:2rem;display:inline-flex;">View Meal Plans <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="nutrition-img">
+        <img src="../../../../static/images/nutrition.png" alt="Nutrition Coaching">
+        <div class="nut-badge"><i class="bi bi-star-fill"></i><div><strong>4.9/5</strong><small>Nutritionist Rating</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── BMI CALCULATOR ─────────────────────────────────── -->
+<section class="bmi-section section" id="bmi">
+  <div class="container">
+    <div class="bmi-grid">
+      <div class="bmi-content reveal-left">
+        <span class="section-tag">Free Tool</span>
+        <h2 class="section-title">CHECK YOUR<br><span class="accent">BMI</span></h2>
+        <p>Use our free BMI calculator to understand your body composition and find the right APEX membership plan for your fitness journey.</p>
+        <div class="bmi-card">
+          <div class="bmi-inputs">
+            <div class="bmi-field">
+              <label>Height (cm)</label>
+              <input type="number" id="bmiHeight" placeholder="e.g. 175" min="100" max="250">
+            </div>
+            <div class="bmi-field">
+              <label>Weight (kg)</label>
+              <input type="number" id="bmiWeight" placeholder="e.g. 70" min="30" max="300">
+            </div>
+          </div>
+          <button class="btn-hero" id="bmiCalcBtn" style="width:100%;justify-content:center;margin-top:1rem;">
+            <i class="bi bi-calculator"></i> Calculate BMI
+          </button>
+          <div class="bmi-result" id="bmiResult" style="display:none;">
+            <div class="bmi-score-wrap">
+              <div class="bmi-score" id="bmiScore">--</div>
+              <div class="bmi-category" id="bmiCategory">--</div>
+            </div>
+            <div class="bmi-bar-wrap">
+              <div class="bmi-bar">
+                <div class="bmi-bar-fill" id="bmiFill"></div>
+                <div class="bmi-marker" id="bmiMarker"></div>
+              </div>
+              <div class="bmi-labels">
+                <span>Underweight</span><span>Normal</span><span>Overweight</span><span>Obese</span>
+              </div>
+            </div>
+            <p class="bmi-tip" id="bmiTip"></p>
+          </div>
+        </div>
+      </div>
+      <div class="bmi-visual reveal-right">
+        <div class="bmi-rings">
+          <div class="bmi-ring-outer"></div>
+          <div class="bmi-ring-mid"></div>
+          <div class="bmi-ring-inner">
+            <i class="bi bi-activity"></i>
+          </div>
+        </div>
+        <div class="bmi-stats-list">
+          <div class="bmi-stat-item reveal"><i class="bi bi-check-circle-fill"></i><span>Personalised plan recommendations</span></div>
+          <div class="bmi-stat-item reveal"><i class="bi bi-check-circle-fill"></i><span>Expert trainer consultation included</span></div>
+          <div class="bmi-stat-item reveal"><i class="bi bi-check-circle-fill"></i><span>Progress tracking every 4 weeks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WORKOUT PLAN FINDER ───────────────────────── -->
+<section class="plans-finder section" id="workout-plans">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Training Programs</span>
+      <h2 class="section-title">FIND YOUR <br><span class="accent">PERFECT PLAN</span></h2>
+      <p class="section-sub">Answer 3 quick questions and we'll match you with the ideal APEX program.</p>
+      <button id="startQuizBtn" style="margin-top:1.5rem; padding:0.8rem 2rem; border-radius:50px; background:rgba(200,240,61,0.1); border:1px solid var(--accent); color:var(--accent); cursor:pointer; font-weight:600; transition:all 0.3s; font-family:var(--font-body); letter-spacing:1px;">Start the Match Quiz <i class="bi bi-arrow-right"></i></button>
+    </div>
+    
+    <!-- Quiz Container -->
+    <div class="quiz-container" id="programQuiz" style="display:none; max-width:600px; margin: 0 auto 3rem; background: #161616; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 2.5rem; text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+        <!-- Step 1 -->
+        <div class="quiz-step active-step" id="quizStep1">
+            <span style="font-size:0.75rem; color:var(--accent); letter-spacing:2px; font-weight:700;">QUESTION 1/3</span>
+            <h3 style="font-family:var(--font-display); font-size:2rem; letter-spacing:1px; margin:0.5rem 0 1.5rem;">What is your primary fitness goal?</h3>
+            <div style="display:flex; flex-direction:column; gap:0.8rem;">
+                <button class="btn-outline q-btn" style="text-align:left; padding:1rem 1.5rem; justify-content:flex-start;" data-score="strength"><i class="bi bi-trophy-fill" style="margin-right:10px;"></i> Build Muscle & Strength</button>
+                <button class="btn-outline q-btn" style="text-align:left; padding:1rem 1.5rem; justify-content:flex-start;" data-score="cardio"><i class="bi bi-heart-pulse-fill" style="margin-right:10px;"></i> Lose Weight & Burn Fat</button>
+                <button class="btn-outline q-btn" style="text-align:left; padding:1rem 1.5rem; justify-content:flex-start;" data-score="flex"><i class="bi bi-person-arms-up" style="margin-right:10px;"></i> Improve Flexibility & Wellness</button>
+                <button class="btn-outline q-btn" style="text-align:left; padding:1rem 1.5rem; justify-content:flex-start;" data-score="bulk"><i class="bi bi-lightning-charge-fill" style="margin-right:10px;"></i> Enhance Athletic Performance</button>
+            </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="quiz-step" id="quizStep2" style="display:none;">
+            <span style="font-size:0.75rem; color:var(--accent); letter-spacing:2px; font-weight:700;">QUESTION 2/3</span>
+            <h3 style="font-family:var(--font-display); font-size:2rem; letter-spacing:1px; margin:0.5rem 0 1.5rem;">How many days a week can you train?</h3>
+            <div style="display:flex; flex-direction:column; gap:0.8rem;">
+                <button class="btn-outline q-btn" style="text-align:left; padding:1rem 1.5rem; justify-content:flex-start;" data-score="flex"><i class="bi bi-calendar2-check" style="margin-right:10px;"></i> 1-2 Days (Light commitment)</button>
+                <button class="btn-outline q-btn" style="text-align:left; padding:1rem 1.5rem; justify-content:flex-start;" data-score="cardio"><i class="bi bi-calendar2-week" style="margin-right:10px;"></i> 3-4 Days (Moderate commitment)</button>
+                <button class="btn-outline q-btn" style="text-align:left; padding:1rem 1.5rem; justify-content:flex-start;" data-score="strength"><i class="bi bi-calendar2-range" style="margin-right:10px;"></i> 5+ Days (High commitment)</button>
+            </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="quiz-step" id="quizStep3" style="display:none;">
+            <span style="font-size:0.75rem; color:var(--accent); letter-spacing:2px; font-weight:700;">QUESTION 3/3</span>
+            <h3 style="font-family:var(--font-display); font-size:2rem; letter-spacing:1px; margin:0.5rem 0 1.5rem;">What is your preferred training style?</h3>
+            <div style="display:flex; flex-direction:column; gap:0.8rem;">
+                <button class="btn-outline q-btn" style="text-align:left; padding:1rem 1.5rem; justify-content:flex-start;" data-score="strength"><i class="bi bi-heptagon-fill" style="margin-right:10px;"></i> Lifting Heavy Weights</button>
+                <button class="btn-outline q-btn" style="text-align:left; padding:1rem 1.5rem; justify-content:flex-start;" data-score="cardio"><i class="bi bi-fire" style="margin-right:10px;"></i> High Intensity & Fast Paced</button>
+                <button class="btn-outline q-btn" style="text-align:left; padding:1rem 1.5rem; justify-content:flex-start;" data-score="flex"><i class="bi bi-yin-yang" style="margin-right:10px;"></i> Mindful, Controlled Movements</button>
+                <button class="btn-outline q-btn" style="text-align:left; padding:1rem 1.5rem; justify-content:flex-start;" data-score="bulk"><i class="bi bi-speedometer2" style="margin-right:10px;"></i> Agility, Speed & Sport Specific</button>
+            </div>
+        </div>
+        <!-- Result -->
+        <div class="quiz-step" id="quizResult" style="display:none; text-align:center;">
+            <div class="goal-icon" style="margin: 0 auto 1.5rem; width:80px; height:80px; font-size:2rem;"><i class="bi bi-check-lg"></i></div>
+            <h3 style="font-family:var(--font-display); font-size:2.5rem; letter-spacing:2px; margin-bottom:1rem; color:var(--accent);">MATCH FOUND</h3>
+            <p style="font-size:1.1rem; margin-bottom:2rem; color:rgba(255,255,255,0.7);">We've highlighted your ideal program below.</p>
+            <button class="btn-outline" id="btnRestartQuiz" style="padding:0.6rem 1.5rem; border-radius:50px; cursor:pointer;">Retake Quiz</button>
+        </div>
+    </div>
+    
+    <!-- Goal cards -->
+    <div class="goal-grid reveal">
+      <div class="goal-card" data-goal="strength">
+        <div class="goal-icon"><i class="bi bi-trophy-fill"></i></div>
+        <h3>Build Strength</h3>
+        <p>Powerlifting, progressive overload &amp; muscle gain programs.</p>
+        <ul class="goal-details">
+          <li><i class="bi bi-check2"></i>5-day split routines</li>
+          <li><i class="bi bi-check2"></i>Olympic lifting coaching</li>
+          <li><i class="bi bi-check2"></i>Strength testing every 6 weeks</li>
+        </ul>
+        <div class="goal-tag">STRENGTH</div>
+      </div>
+      <div class="goal-card active" data-goal="cardio">
+        <div class="goal-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+        <h3>Burn Fat &amp; Cardio</h3>
+        <p>High-intensity programs designed to maximize calorie burn.</p>
+        <ul class="goal-details">
+          <li><i class="bi bi-check2"></i>HIIT &amp; circuit sessions</li>
+          <li><i class="bi bi-check2"></i>Cardio zone guidance</li>
+          <li><i class="bi bi-check2"></i>Weekly fat-loss tracking</li>
+        </ul>
+        <div class="goal-tag">CARDIO</div>
+      </div>
+      <div class="goal-card" data-goal="flex">
+        <div class="goal-icon"><i class="bi bi-person-arms-up"></i></div>
+        <h3>Flexibility &amp; Mind</h3>
+        <p>Yoga, mobility work and mindfulness for a balanced body.</p>
+        <ul class="goal-details">
+          <li><i class="bi bi-check2"></i>Daily yoga classes</li>
+          <li><i class="bi bi-check2"></i>Mobility &amp; stretch zones</li>
+          <li><i class="bi bi-check2"></i>Meditation sessions</li>
+        </ul>
+        <div class="goal-tag">WELLNESS</div>
+      </div>
+      <div class="goal-card" data-goal="bulk">
+        <div class="goal-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+        <h3>Athletic Performance</h3>
+        <p>Elite conditioning for sport-specific peak performance.</p>
+        <ul class="goal-details">
+          <li><i class="bi bi-check2"></i>Sport-specific drills</li>
+          <li><i class="bi bi-check2"></i>Speed &amp; agility training</li>
+          <li><i class="bi bi-check2"></i>VO2 max testing</li>
+        </ul>
+        <div class="goal-tag">PERFORMANCE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRAINER PROFILES ──────────────────────────── -->
+<section class="trainers-section section" id="trainers">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Meet the Experts</span>
+      <h2 class="section-title">OUR <span class="accent">ELITE TRAINERS</span></h2>
+      <p class="section-sub">Certified world-class coaches dedicated to your success.</p>
+    </div>
+    <div class="trainers-grid">
+
+      <div class="trainer-card reveal">
+        <div class="trainer-img-wrap">
+          <div class="trainer-avatar-placeholder"><i class="bi bi-person-fill"></i></div>
+          <div class="trainer-badge">Head Coach</div>
+        </div>
+        <div class="trainer-info">
+          <h3>Rajan Perera</h3>
+          <span class="trainer-specialty"><i class="bi bi-lightning-charge-fill"></i> Strength &amp; Powerlifting</span>
+          <p>15 years experience. Former national powerlifting champion with NASM and ACE certifications.</p>
+          <div class="trainer-stats">
+            <div class="t-stat"><strong>15+</strong><span>Years Exp.</span></div>
+            <div class="t-stat"><strong>200+</strong><span>Clients</span></div>
+            <div class="t-stat"><strong>4.9</strong><span>Rating</span></div>
+          </div>
+          <div class="trainer-tags">
+            <span>NASM Certified</span><span>Powerlifting</span><span>Bodybuilding</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trainer-card reveal">
+        <div class="trainer-img-wrap">
+          <div class="trainer-avatar-placeholder female"><i class="bi bi-person-fill"></i></div>
+          <div class="trainer-badge">Nutrition Lead</div>
+        </div>
+        <div class="trainer-info">
+          <h3>Shalini de Silva</h3>
+          <span class="trainer-specialty"><i class="bi bi-heart-pulse-fill"></i> Nutrition &amp; Wellness</span>
+          <p>Registered Dietitian with a Masters in Sports Nutrition. Specialist in body recomposition.</p>
+          <div class="trainer-stats">
+            <div class="t-stat"><strong>10+</strong><span>Years Exp.</span></div>
+            <div class="t-stat"><strong>300+</strong><span>Clients</span></div>
+            <div class="t-stat"><strong>4.8</strong><span>Rating</span></div>
+          </div>
+          <div class="trainer-tags">
+            <span>Registered Dietitian</span><span>Keto</span><span>Sports Nutrition</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trainer-card reveal">
+        <div class="trainer-img-wrap">
+          <div class="trainer-avatar-placeholder"><i class="bi bi-person-fill"></i></div>
+          <div class="trainer-badge">HIIT Specialist</div>
+        </div>
+        <div class="trainer-info">
+          <h3>Tharaka Bandara</h3>
+          <span class="trainer-specialty"><i class="bi bi-fire"></i> HIIT &amp; Cardio</span>
+          <p>CrossFit Level 3 coach and marathon runner. Expert in high-intensity and endurance training.</p>
+          <div class="trainer-stats">
+            <div class="t-stat"><strong>8+</strong><span>Years Exp.</span></div>
+            <div class="t-stat"><strong>150+</strong><span>Clients</span></div>
+            <div class="t-stat"><strong>5.0</strong><span>Rating</span></div>
+          </div>
+          <div class="trainer-tags">
+            <span>CrossFit L3</span><span>Marathon</span><span>HIIT</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CALORIE BURN CALCULATOR ──────────────────── -->
+<section class="calorie-section section" id="calorie">
+  <div class="container">
+    <div class="calorie-grid">
+      <div class="calorie-content reveal-left">
+        <span class="section-tag">Free Tool</span>
+        <h2 class="section-title">CALORIE<br><span class="accent">BURN CALC</span></h2>
+        <p>Estimate how many calories you burn per workout session based on your weight and activity type.</p>
+        <div class="cal-card">
+          <div class="cal-inputs">
+            <div class="bmi-field">
+              <label>Your Weight (kg)</label>
+              <input type="number" id="calWeight" placeholder="e.g. 75" min="30" max="200">
+            </div>
+            <div class="bmi-field">
+              <label>Duration (minutes)</label>
+              <input type="number" id="calDuration" placeholder="e.g. 45" min="10" max="180">
+            </div>
+          </div>
+          <div class="cal-activity-grid" id="calActivityGrid">
+            <div class="cal-activity-btn active" data-met="8" data-name="HIIT">
+              <i class="bi bi-lightning-fill"></i> HIIT
+            </div>
+            <div class="cal-activity-btn" data-met="6" data-name="Running">
+              <i class="bi bi-person-walking"></i> Running
+            </div>
+            <div class="cal-activity-btn" data-met="5" data-name="Cycling">
+              <i class="bi bi-bicycle"></i> Cycling
+            </div>
+            <div class="cal-activity-btn" data-met="4" data-name="Strength">
+              <i class="bi bi-trophy-fill"></i> Strength
+            </div>
+            <div class="cal-activity-btn" data-met="3" data-name="Yoga">
+              <i class="bi bi-person-arms-up"></i> Yoga
+            </div>
+            <div class="cal-activity-btn" data-met="5" data-name="Swimming">
+              <i class="bi bi-water"></i> Swimming
+            </div>
+          </div>
+          <button class="btn-hero" id="calBtn" style="width:100%;justify-content:center;margin-top:1rem;">
+            <i class="bi bi-fire"></i> Calculate Burn
+          </button>
+          <div class="cal-result" id="calResult" style="display:none;">
+            <div class="cal-result-main">
+              <div class="cal-num" id="calNum">0</div>
+              <div class="cal-unit">kcal burned</div>
+            </div>
+            <div class="cal-breakdown">
+              <div class="cal-bd-item"><i class="bi bi-cup-hot-fill"></i><span id="calFoodEq">--</span><small>food equivalent</small></div>
+              <div class="cal-bd-item"><i class="bi bi-clock-fill"></i><span id="calWalkEq">--</span><small>mins of walking</small></div>
+            </div>
+            <div class="cal-bar-wrap">
+              <div class="cal-bar-track"><div class="cal-bar-fill" id="calBarFill"></div></div>
+              <div class="cal-bar-labels"><span>0</span><span>500</span><span>1000+ kcal</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="calorie-visual reveal-right">
+        <div class="cal-info-cards">
+          <div class="cal-info-card">
+            <div class="cal-info-icon"><i class="bi bi-fire"></i></div>
+            <div>
+              <strong>Average Burn at APEX</strong>
+              <p>Our members burn an average of 520 kcal per session.</p>
+            </div>
+          </div>
+          <div class="cal-info-card">
+            <div class="cal-info-icon"><i class="bi bi-graph-up-arrow"></i></div>
+            <div>
+              <strong>Weekly Calorie Deficit</strong>
+              <p>3–4 sessions/week creates a healthy 1,500–2,000 kcal weekly deficit.</p>
+            </div>
+          </div>
+          <div class="cal-info-card">
+            <div class="cal-info-icon"><i class="bi bi-heart-fill"></i></div>
+            <div>
+              <strong>Heart Rate Zone Training</strong>
+              <p>Our HIIT classes keep you in the optimal 75–85% max HR zone.</p>
+            </div>
+          </div>
+          <div class="cal-info-card">
+            <div class="cal-info-icon"><i class="bi bi-award-fill"></i></div>
+            <div>
+              <strong>InBody Scan Included</strong>
+              <p>Track your real body fat %, muscle mass, and metabolic rate monthly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRANSFORMATION MILESTONES ───────────────── -->
+<section class="milestones-section section" id="milestones">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Your Journey</span>
+      <h2 class="section-title">WHAT TO EXPECT<br><span class="accent">EACH MONTH</span></h2>
+      <p class="section-sub">A realistic, science-backed transformation timeline for new APEX members.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal-left">
+        <div class="tl-marker"><span>1</span></div>
+        <div class="tl-content">
+          <div class="tl-month">Month 1</div>
+          <h3>Foundation &amp; Adaptation</h3>
+          <p>Your body adapts to new movements and intensity. Expect improved sleep, energy levels, and early cardio gains. Average: <strong class="accent">3–5 kg loss</strong>.</p>
+          <div class="tl-badges"><span>↑ Energy</span><span>↑ Sleep Quality</span><span>↑ Endurance</span></div>
+        </div>
+      </div>
+      <div class="timeline-item reveal-right">
+        <div class="tl-marker"><span>2</span></div>
+        <div class="tl-content">
+          <div class="tl-month">Month 2</div>
+          <h3>Visible Changes Begin</h3>
+          <p>Muscle definition becomes visible. Strength increases 15–20%. Friends and family start noticing the difference. Average: <strong class="accent">5–8 kg loss total</strong>.</p>
+          <div class="tl-badges"><span>↑ Muscle Tone</span><span>↑ Strength</span><span>↓ Body Fat</span></div>
+        </div>
+      </div>
+      <div class="timeline-item reveal-left">
+        <div class="tl-marker"><span>3</span></div>
+        <div class="tl-content">
+          <div class="tl-month">Month 3</div>
+          <h3>Breakthrough Results</h3>
+          <p>Dramatic physical transformation. Metabolism is optimized. You feel and look your best. Average: <strong class="accent">10–15 kg loss total</strong>.</p>
+          <div class="tl-badges"><span>↑ Confidence</span><span>↑ Performance</span><span>↑ Mental Health</span></div>
+        </div>
+      </div>
+      <div class="timeline-item reveal-right">
+        <div class="tl-marker"><span>6+</span></div>
+        <div class="tl-content">
+          <div class="tl-month">Month 6+</div>
+          <h3>Lifestyle Transformation</h3>
+          <p>Fitness is now a lifestyle, not a goal. Maintain elite physique, push new PRs and take on advanced programs. Average: <strong class="accent">20+ kg total transformation</strong>.</p>
+          <div class="tl-badges"><span>Elite Fitness</span><span>New PRs</span><span>Lifelong Habit</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ────────────────────────────────────────── -->
+<section class="pricing section" id="pricing">
+  <div class="pricing-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Membership Plans</span>
+      <h2 class="section-title">INVEST IN<br><span class="accent">YOURSELF</span></h2>
+      <p class="section-sub">Choose the plan that fits your lifestyle. All plans include our world-class facilities. No contracts, cancel anytime.</p>
+    </div>
+
+    <!-- Plan Toggle -->
+    <div class="plan-toggle-wrap reveal">
+      <div class="plan-toggle" id="planToggle">
+        <div class="plan-toggle-slider" id="planSlider"></div>
+        <button class="plan-toggle-btn active" data-period="monthly">Monthly</button>
+        <button class="plan-toggle-btn" data-period="annual">Annual <span class="plan-save-tag">Save 20%</span></button>
+      </div>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- BASIC -->
+      <div class="price-card reveal" data-tier="basic">
+        <div class="price-card-glow"></div>
+        <div class="price-tier-line basic"></div>
+        <div class="price-card-inner">
+          <div class="price-icon-wrap basic"><i class="bi bi-lightning-charge-fill"></i></div>
+          <h3 class="price-plan-name">BASIC</h3>
+          <p class="price-plan-desc">Perfect for beginners starting their fitness journey</p>
+          <div class="price-amount">
+            <span class="price-currency">Rs.</span>
+            <span class="price-value" data-monthly="2,500" data-annual="24,000">2,500</span>
+            <span class="price-period" data-monthly="/mo" data-annual="/yr">/mo</span>
+          </div>
+          <div class="price-annual-note" style="display:none"><i class="bi bi-piggy-bank"></i> Save Rs.6,000/year</div>
+          <a href="member-register" class="btn-price-new">Get Started <i class="bi bi-arrow-right"></i></a>
+          <div class="price-divider"></div>
+          <ul class="price-features-new">
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>Gym Access (6am–10pm)</span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>Locker &amp; Shower</span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>Basic Equipment</span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>WiFi &amp; Parking</span></li>
+            <li class="excluded"><i class="bi bi-x-circle"></i><span>Group Classes</span></li>
+            <li class="excluded"><i class="bi bi-x-circle"></i><span>Personal Trainer</span></li>
+            <li class="excluded"><i class="bi bi-x-circle"></i><span>Nutrition Coaching</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- STANDARD (featured) -->
+      <div class="price-card featured reveal" data-tier="standard">
+        <div class="price-card-glow featured-glow"></div>
+        <div class="price-popular"><i class="bi bi-trophy-fill"></i> MOST POPULAR</div>
+        <div class="price-tier-line standard"></div>
+        <div class="price-card-inner">
+          <div class="price-icon-wrap standard"><i class="bi bi-fire"></i></div>
+          <h3 class="price-plan-name">STANDARD</h3>
+          <p class="price-plan-desc">The complete package for dedicated fitness enthusiasts</p>
+          <div class="price-amount">
+            <span class="price-currency">Rs.</span>
+            <span class="price-value" data-monthly="4,500" data-annual="43,200">4,500</span>
+            <span class="price-period" data-monthly="/mo" data-annual="/yr">/mo</span>
+          </div>
+          <div class="price-annual-note" style="display:none"><i class="bi bi-piggy-bank"></i> Save Rs.10,800/year</div>
+          <a href="member-register" class="btn-price-new featured-btn">Get Started <i class="bi bi-arrow-right"></i></a>
+          <div class="price-divider"></div>
+          <ul class="price-features-new">
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>24/7 Gym Access</span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>Locker &amp; Shower</span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>All Equipment</span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>Group Classes <em>(Unlimited)</em></span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>Sauna &amp; Steam Room</span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>Body Analysis Monthly</span></li>
+            <li class="excluded"><i class="bi bi-x-circle"></i><span>Personal Trainer</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="price-card reveal" data-tier="premium">
+        <div class="price-card-glow"></div>
+        <div class="price-tier-line premium"></div>
+        <div class="price-elite-badge"><i class="bi bi-gem"></i> ELITE</div>
+        <div class="price-card-inner">
+          <div class="price-icon-wrap premium"><i class="bi bi-gem"></i></div>
+          <h3 class="price-plan-name">PREMIUM</h3>
+          <p class="price-plan-desc">The ultimate VIP experience for peak performance</p>
+          <div class="price-amount">
+            <span class="price-currency">Rs.</span>
+            <span class="price-value" data-monthly="7,500" data-annual="72,000">7,500</span>
+            <span class="price-period" data-monthly="/mo" data-annual="/yr">/mo</span>
+          </div>
+          <div class="price-annual-note" style="display:none"><i class="bi bi-piggy-bank"></i> Save Rs.18,000/year</div>
+          <a href="member-register" class="btn-price-new premium-btn">Get Started <i class="bi bi-arrow-right"></i></a>
+          <div class="price-divider"></div>
+          <ul class="price-features-new">
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>24/7 VIP Access</span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>Premium Locker Suite</span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>All Equipment</span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>All Classes <em>(Unlimited)</em></span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>Dedicated Personal Trainer</span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>Nutrition Coaching</span></li>
+            <li class="included"><i class="bi bi-check-circle-fill"></i><span>Spa &amp; Recovery Access</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Bar -->
+    <div class="price-trust reveal" style="margin-top:3rem;opacity:1;transform:none">
+      <div class="price-trust-item"><i class="bi bi-shield-check"></i> No Contracts</div>
+      <div class="price-trust-sep"></div>
+      <div class="price-trust-item"><i class="bi bi-arrow-counterclockwise"></i> Cancel Anytime</div>
+      <div class="price-trust-sep"></div>
+      <div class="price-trust-item"><i class="bi bi-gift"></i> 7-Day Free Trial</div>
+      <div class="price-trust-sep"></div>
+      <div class="price-trust-item"><i class="bi bi-credit-card"></i> No Hidden Fees</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ────────────────────────────────────── -->
+<section class="testimonials section" id="testimonials">
+  <div class="test-bg"><img src="../../../../static/images/testimonial-bg.png" alt=""><div class="test-overlay"></div></div>
+  <div class="container" style="position:relative">
+    <div class="section-header reveal">
+      <span class="section-tag">Member Stories</span>
+      <h2 class="section-title">REAL RESULTS,<br><span class="accent">REAL PEOPLE</span></h2>
+      <p class="section-sub">Hear from our members who transformed their lives at APEX Fitness.</p>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="rev-stats-bar reveal">
+      <div class="rev-stat-pill"><i class="bi bi-star-fill" style="color:gold"></i> <strong>4.9</strong> Average Rating</div>
+      <div class="rev-stat-pill"><i class="bi bi-people-fill" style="color:var(--accent)"></i> <strong>1,240+</strong> Reviews</div>
+      <div class="rev-stat-pill"><i class="bi bi-patch-check-fill" style="color:#34d399"></i> <strong>98%</strong> Recommend</div>
+    </div>
+
+    <!-- Review Cards Grid -->
+    <div class="rev-grid" id="revGrid">
+      <!-- Static reviews -->
+      <div class="rev-card reveal">
+        <div class="rev-card-accent"></div>
+        <div class="rev-card-inner">
+          <div class="rev-rating"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <div class="rev-quote-icon"><i class="bi bi-quote"></i></div>
+          <p class="rev-text">"Lost 18kg in 5 months. The trainers at APEX are next level — they push you but always keep it safe and smart. My confidence has never been higher."</p>
+          <div class="rev-footer">
+            <div class="rev-author">
+              <div class="rev-avatar" style="background:#3b82f6">K</div>
+              <div><strong>Kasun Perera</strong><span>Member since 2023</span></div>
+            </div>
+            <div class="rev-verified"><i class="bi bi-patch-check-fill"></i> Verified</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rev-card reveal">
+        <div class="rev-card-accent" style="background:linear-gradient(90deg,#a78bfa,#8b5cf6)"></div>
+        <div class="rev-card-inner">
+          <div class="rev-rating"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <div class="rev-quote-icon"><i class="bi bi-quote"></i></div>
+          <p class="rev-text">"The nutrition program combined with training completely changed my body composition. APEX is not just a gym, it's a complete transformation system."</p>
+          <div class="rev-footer">
+            <div class="rev-author">
+              <div class="rev-avatar" style="background:#a78bfa">P</div>
+              <div><strong>Priya Jayawardena</strong><span>Premium Member</span></div>
+            </div>
+            <div class="rev-verified"><i class="bi bi-patch-check-fill"></i> Verified</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rev-card reveal">
+        <div class="rev-card-accent" style="background:linear-gradient(90deg,#34d399,#10b981)"></div>
+        <div class="rev-card-inner">
+          <div class="rev-rating"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <div class="rev-quote-icon"><i class="bi bi-quote"></i></div>
+          <p class="rev-text">"Group classes are incredibly energetic. Zumba, HIIT, yoga — I look forward to every session. Best investment in myself ever. The community is amazing!"</p>
+          <div class="rev-footer">
+            <div class="rev-author">
+              <div class="rev-avatar" style="background:#34d399">N</div>
+              <div><strong>Nadeesha Fernando</strong><span>Standard Member</span></div>
+            </div>
+            <div class="rev-verified"><i class="bi bi-patch-check-fill"></i> Verified</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Write Review Button (hidden by default, shown via JS for logged-in members) -->
+    <div class="rev-write-wrap" id="revWriteWrap" style="display:none">
+      <button class="rev-write-btn" id="revWriteBtn"><i class="bi bi-pencil-square"></i> Write a Review</button>
+    </div>
+
+    <!-- Write Review Modal -->
+    <div class="rev-modal-bg" id="revModal">
+      <div class="rev-modal">
+        <button class="rev-modal-close" onclick="closeRevModal()"><i class="bi bi-x-lg"></i></button>
+        <div class="rev-modal-header">
+          <div class="rev-modal-icon"><i class="bi bi-chat-heart-fill"></i></div>
+          <h3>Share Your <span class="accent">Experience</span></h3>
+          <p>Your review helps others discover the APEX difference.</p>
+        </div>
+        <div class="rev-modal-body">
+          <div class="rev-field">
+            <label>Your Rating</label>
+            <div class="rev-star-input" id="revStarInput">
+              <i class="bi bi-star" data-val="1"></i>
+              <i class="bi bi-star" data-val="2"></i>
+              <i class="bi bi-star" data-val="3"></i>
+              <i class="bi bi-star" data-val="4"></i>
+              <i class="bi bi-star" data-val="5"></i>
+            </div>
+          </div>
+          <div class="rev-field">
+            <label>Your Review</label>
+            <textarea id="revText" placeholder="What do you love about APEX Fitness? Share your story..." rows="4"></textarea>
+          </div>
+          <button class="rev-submit-btn" onclick="submitReview()"><i class="bi bi-send-fill"></i> Submit Review</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ───────────────────────────────────────────── -->
+<section class="faq-section section" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Got Questions?</span>
+      <h2 class="section-title">FREQUENTLY<br><span class="accent">ASKED</span></h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item reveal" data-faq>
+        <div class="faq-q"><span>Can I try before committing to a plan?</span><i class="bi bi-plus-lg"></i></div>
+        <div class="faq-a">Yes! We offer a free 7-day trial for new members. You'll get full access to our facilities and can attend group classes with no commitment required.</div>
+      </div>
+      <div class="faq-item reveal" data-faq>
+        <div class="faq-q"><span>Are there joining fees?</span><i class="bi bi-plus-lg"></i></div>
+        <div class="faq-a">No joining fees, no hidden charges. The monthly plan price is all you pay. Cancel anytime with 30 days notice.</div>
+      </div>
+      <div class="faq-item reveal" data-faq>
+        <div class="faq-q"><span>Can I freeze my membership?</span><i class="bi bi-plus-lg"></i></div>
+        <div class="faq-a">Standard and Premium members can freeze their membership for up to 2 months per year. Perfect for holidays or medical leave.</div>
+      </div>
+      <div class="faq-item reveal" data-faq>
+        <div class="faq-q"><span>What equipment is available?</span><i class="bi bi-plus-lg"></i></div>
+        <div class="faq-a">We have 200+ pieces of equipment including Olympic platforms, cable machines, smith machines, 50+ cardio units, and dedicated stretching zones.</div>
+      </div>
+      <div class="faq-item reveal" data-faq>
+        <div class="faq-q"><span>Is personal training included?</span><i class="bi bi-plus-lg"></i></div>
+        <div class="faq-a">Personal training is included with Premium membership. Standard and Basic members can add sessions at preferential rates from Rs.1,500 per session.</div>
+      </div>
+      <div class="faq-item reveal" data-faq>
+        <div class="faq-q"><span>Do you have parking?</span><i class="bi bi-plus-lg"></i></div>
+        <div class="faq-a">Yes, we have 80 parking spots available for members free of charge, open from 4:30am to 11:30pm daily.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────── -->
+<section class="cta-section">
+  <div class="cta-bg-rings">
+    <div class="cta-ring cta-ring-1"></div>
+    <div class="cta-ring cta-ring-2"></div>
+  </div>
+  <div class="cta-content reveal">
+    <h2>READY TO <span class="accent">TRANSFORM?</span></h2>
+    <p>Join thousands of members who already made the best decision of their lives.<br>
+       Choose your plan below and <strong style="color:var(--accent,#C8F03D)">start your first week free.</strong></p>
+    <div class="cta-actions">
+      <a href="member-register" class="btn-hero" style="padding:.9rem 2.8rem;font-size:1rem;">Start Your Free Trial <i class="bi bi-arrow-right"></i></a>
+      <a href="member-login" class="btn-ghost">Member Login</a>
+    </div>
+    <!-- Trust indicators -->
+    <div style="display:flex;gap:2.5rem;flex-wrap:wrap;justify-content:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);">
+      <div style="text-align:center;">
+        <div style="font-family:var(--font-display,Bebas Neue,sans-serif);font-size:1.6rem;letter-spacing:1px;color:#C8F03D;line-height:1;">5,000+</div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.45);font-weight:500;margin-top:.2rem;letter-spacing:1px;text-transform:uppercase;">Active Members</div>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,.08);align-self:stretch;"></div>
+      <div style="text-align:center;">
+        <div style="font-family:var(--font-display,Bebas Neue,sans-serif);font-size:1.6rem;letter-spacing:1px;color:#C8F03D;line-height:1;">4.9 <i class="bi bi-star-fill" style="font-size:.8rem;"></i></div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.45);font-weight:500;margin-top:.2rem;letter-spacing:1px;text-transform:uppercase;">Member Rating</div>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,.08);align-self:stretch;"></div>
+      <div style="text-align:center;">
+        <div style="font-family:var(--font-display,Bebas Neue,sans-serif);font-size:1.6rem;letter-spacing:1px;color:#C8F03D;line-height:1;">7 DAYS</div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.45);font-weight:500;margin-top:.2rem;letter-spacing:1px;text-transform:uppercase;">Free Trial</div>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;color:rgba(255,255,255,.35);font-weight:500;">
+      <i class="bi bi-shield-check" style="color:rgba(200,240,61,.5);font-size:.9rem;"></i> No contracts · Cancel anytime · No joining fees
+    </div>
+  </div>
+</section>
+
+<!-- ── MAP ──────────────────────────────────────────────── -->
+<section class="map-section" id="location">
+  <!-- Decorative bg glow -->
+  <div class="map-section-glow"></div>
+  <div class="container">
+    <div class="map-section-header reveal">
+      <span class="section-tag">Find Us</span>
+      <h2 class="section-title">VISIT <span class="accent">APEX FITNESS</span></h2>
+      <p class="section-sub">Located in the heart of Colombo — easy to reach by car, bus, or tuk-tuk.</p>
+    </div>
+
+    <div class="map-layout">
+      <!-- Left: Info Panel -->
+      <div class="map-info-panel reveal-left">
+
+        <!-- Gym Live Status -->
+        <div class="map-live-status" id="mapLiveStatus">
+          <div class="map-live-dot"></div>
+          <span id="mapStatusLabel">Checking hours…</span>
+          <span class="map-live-time" id="mapLiveTime"></span>
+        </div>
+
+        <!-- Info cards -->
+        <div class="map-info-cards">
+          <div class="map-ic" onclick="window.open('https://maps.google.com/?q=28+St+Michaels+Road+Colombo+Sri+Lanka','_blank')">
+            <div class="map-ic-icon"><i class="bi bi-geo-alt-fill"></i></div>
+            <div class="map-ic-body">
+              <div class="map-ic-label">Address</div>
+              <div class="map-ic-value">28 St Michaels Rd, Colombo 00300</div>
+            </div>
+            <i class="bi bi-arrow-up-right map-ic-arrow"></i>
+          </div>
+          <div class="map-ic">
+            <div class="map-ic-icon"><i class="bi bi-clock-fill"></i></div>
+            <div class="map-ic-body">
+              <div class="map-ic-label">Opening Hours</div>
+              <div class="map-ic-value">Mon – Sun · 5:00 AM – 11:00 PM</div>
+            </div>
+          </div>
+          <div class="map-ic" onclick="window.location='tel:+94112345678'">
+            <div class="map-ic-icon"><i class="bi bi-telephone-fill"></i></div>
+            <div class="map-ic-body">
+              <div class="map-ic-label">Phone</div>
+              <div class="map-ic-value">+94 11 234 5678</div>
+            </div>
+            <i class="bi bi-arrow-up-right map-ic-arrow"></i>
+          </div>
+          <div class="map-ic" onclick="window.location='mailto:hello@apexfitness.lk'">
+            <div class="map-ic-icon"><i class="bi bi-envelope-fill"></i></div>
+            <div class="map-ic-body">
+              <div class="map-ic-label">Email</div>
+              <div class="map-ic-value">hello@apexfitness.lk</div>
+            </div>
+            <i class="bi bi-arrow-up-right map-ic-arrow"></i>
+          </div>
+          <div class="map-ic">
+            <div class="map-ic-icon"><i class="bi bi-p-circle-fill"></i></div>
+            <div class="map-ic-body">
+              <div class="map-ic-label">Parking</div>
+              <div class="map-ic-value">80 free spots · Open 4:30 AM – 11:30 PM</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transport mode buttons -->
+        <div class="map-transport">
+          <div class="map-transport-label">Get Directions via:</div>
+          <div class="map-transport-btns">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=28+St+Michaels+Road,+Colombo+00300&travelmode=driving" target="_blank" class="map-transport-btn active" data-mode="driving">
+              <i class="bi bi-car-front-fill"></i><span>Drive</span>
+            </a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=28+St+Michaels+Road,+Colombo+00300&travelmode=transit" target="_blank" class="map-transport-btn" data-mode="transit">
+              <i class="bi bi-bus-front-fill"></i><span>Transit</span>
+            </a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=28+St+Michaels+Road,+Colombo+00300&travelmode=bicycling" target="_blank" class="map-transport-btn" data-mode="bicycling">
+              <i class="bi bi-bicycle"></i><span>Bike</span>
+            </a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=28+St+Michaels+Road,+Colombo+00300&travelmode=walking" target="_blank" class="map-transport-btn" data-mode="walking">
+              <i class="bi bi-person-walking"></i><span>Walk</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- CTA buttons -->
+        <div class="map-cta-row">
+          <a href="https://www.google.com/maps/place/28+St+Michaels+Road,+Colombo+00300,+Sri+Lanka/@6.9155,79.8518,17z" target="_blank" rel="noopener" class="btn-hero">
+            <i class="bi bi-map-fill"></i> Open in Google Maps
+          </a>
+          <a href="member-register" class="btn-ghost">
+            <i class="bi bi-person-plus"></i> Join Now
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Google Maps Embed (enhanced) -->
+      <div class="map-embed-panel reveal-right">
+        <!-- Map type toggle -->
+        <div class="map-toggle-bar">
+          <button class="map-toggle-btn active" id="mapBtnSatellite" onclick="switchMap('satellite')">
+            <i class="bi bi-layers-fill"></i> Satellite
+          </button>
+          <button class="map-toggle-btn" id="mapBtnStreet" onclick="switchMap('street')">
+            <i class="bi bi-map"></i> Street View
+          </button>
+          <button class="map-toggle-btn" id="mapBtnNeighbour" onclick="switchMap('neighbourhood')">
+            <i class="bi bi-compass"></i> Nearby
+          </button>
+        </div>
+
+        <div class="map-frame-premium" id="mapFrame">
+          <!-- Default: Google Maps Satellite Embed -->
+          <iframe
+            id="googleMapIframe"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d992.6553786527538!2d79.85066541522705!3d6.916744343738265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25927de0c97a5%3A0x5e5f2c6f3f0d1e2a!2s28%20St%20Michaels%20Rd%2C%20Colombo%2000300%2C%20Sri%20Lanka!5e1!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+            title="APEX FITNESS — 28 St Michaels Rd, Colombo 00300, Sri Lanka"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+          <!-- Floating pin card -->
+          <div class="map-float-card">
+            <div class="map-float-logo">APEX<span>FIT</span></div>
+            <div class="map-float-info">
+              <strong>APEX FITNESS</strong>
+              <span>28 St Michaels Rd, Colombo</span>
+            </div>
+            <div class="map-float-open" id="mapFloatStatus">Open</div>
+          </div>
+          <!-- Fullscreen link -->
+          <a class="map-fullscreen-btn"
+             href="https://www.google.com/maps/place/28+St+Michaels+Road,+Colombo+00300,+Sri+Lanka"
+             target="_blank" rel="noopener"
+             title="Open in Google Maps">
+            <i class="bi bi-fullscreen"></i>
+          </a>
+        </div>
+
+        <!-- Nearby highlights -->
+        <div class="map-nearby-strip">
+          <div class="map-nearby-item">
+            <i class="bi bi-cup-hot-fill"></i>
+            <span>Café nearby</span>
+            <em>3 min walk</em>
+          </div>
+          <div class="map-nearby-item">
+            <i class="bi bi-bag-fill"></i>
+            <span>Shopping</span>
+            <em>5 min walk</em>
+          </div>
+          <div class="map-nearby-item">
+            <i class="bi bi-train-front-fill"></i>
+            <span>Maradana Stn.</span>
+            <em>8 min drive</em>
+          </div>
+          <div class="map-nearby-item">
+            <i class="bi bi-hospital-fill"></i>
+            <span>Hospital</span>
+            <em>4 min drive</em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ── APP DOWNLOAD + LIVE STATS BANNER ───────────────────── -->
+<section class="app-cta-section">
+  <div class="app-cta-glow"></div>
+  <div class="container">
+    <div class="app-cta-grid" style="grid-template-columns:1fr;text-align:center">
+      <div class="app-cta-stats reveal-left">
+        <span class="section-tag">Live Gym Stats</span>
+        <h2 class="section-title" style="font-size:2.8rem">THE NUMBERS<br><span class="accent">SPEAK.</span></h2>
+        <div class="live-stats-grid">
+          <div class="live-stat"><div class="live-stat-val">5,240</div><div class="live-stat-lbl"><i class="bi bi-people-fill"></i> Active Members</div></div>
+          <div class="live-stat"><div class="live-stat-val">2.1M</div><div class="live-stat-lbl"><i class="bi bi-fire"></i> Calories Burned Today</div></div>
+          <div class="live-stat"><div class="live-stat-val">48</div><div class="live-stat-lbl"><i class="bi bi-calendar-check"></i> Classes This Week</div></div>
+          <div class="live-stat"><div class="live-stat-val">4.9&#9733;</div><div class="live-stat-lbl"><i class="bi bi-star-fill"></i> Google Rating</div></div>
+        </div>
+        <div class="award-badges" style="justify-content:center">
+          <div class="award-badge"><i class="bi bi-patch-check-fill"></i> ISO Certified</div>
+          <div class="award-badge"><i class="bi bi-shield-fill-check"></i> NSCA Partner</div>
+          <div class="award-badge"><i class="bi bi-trophy-fill"></i> #1 in Colombo 2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MULTI-BRANCH STRIP ─────────────────────────── -->
+<div class="branch-strip">
+  <div class="container">
+    <div class="branch-strip-inner">
+      <div class="branch-strip-label"><i class="bi bi-geo-alt-fill"></i> OUR LOCATIONS</div>
+      <div class="branch-items">
+        <div class="branch-item active"><div class="branch-dot"></div><div><strong>Colombo 03</strong><span>Main Branch &middot; Open Now</span></div></div>
+        <div class="branch-divider"></div>
+        <div class="branch-item"><div class="branch-dot" style="background:#60a5fa"></div><div><strong>Kandy</strong><span>Coming Soon &middot; 2025</span></div></div>
+        <div class="branch-divider"></div>
+        <div class="branch-item"><div class="branch-dot" style="background:#60a5fa"></div><div><strong>Galle</strong><span>Coming Soon &middot; 2026</span></div></div>
+      </div>
+      <a href="https://www.google.com/maps/place/28+St+Michaels+Road,+Colombo+00300,+Sri+Lanka" target="_blank" class="branch-map-btn"><i class="bi bi-map-fill"></i> View on Map</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer class="footer footer-premium">
+  <div class="footer-accent-bar"><div class="footer-accent-bar-inner"></div></div>
+  <div class="container">
+    <div class="footer-main-grid">
+      <div class="footer-brand-col">
+        <div class="nav-logo" style="font-size:1.8rem;margin-bottom:1rem;">APEX<span>FITNESS</span></div>
+        <p class="footer-brand-desc">Sri Lanka's most premium fitness center. Transforming bodies and minds since 2020. Your best chapter starts here.</p>
+        <div class="social-links footer-socials">
+          <a href="#" aria-label="Instagram" class="social-link"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="Facebook" class="social-link"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Twitter" class="social-link"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" aria-label="YouTube" class="social-link"><i class="bi bi-youtube"></i></a>
+          <a href="#" aria-label="TikTok" class="social-link"><i class="bi bi-tiktok"></i></a>
+        </div>
+        <div class="footer-rating-row">
+          <div class="footer-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+          <div><strong style="color:#fff">4.9</strong> <span style="color:var(--gray-text);font-size:.8rem">on Google &middot; 1,240 reviews</span></div>
+        </div>
+      </div>
+      <div class="footer-links-group">
+        <div class="footer-col">
+          <h4 class="footer-col-title">Explore</h4>
+          <a href="#about">About Us</a><a href="#services">Services</a><a href="#classes">Classes</a>
+          <a href="our-trainers">Our Trainers</a><a href="#pricing">Membership Plans</a><a href="#testimonials">Reviews</a><a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Member</h4>
+          <a href="member-login">Member Login</a><a href="member-register">Join Now</a>
+          <a href="member-login">My Dashboard</a><a href="#pricing">Upgrade Plan</a><a href="#">Download App</a><a href="#">Support Chat</a>
+        </div>
+      </div>
+      <div class="footer-contact-col">
+        <h4 class="footer-col-title">Find Us</h4>
+        <div class="footer-mini-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d992.6553786527538!2d79.85066541522705!3d6.916744343738265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25927de0c97a5%3A0x5e5f2c6f3f0d1e2a!2s28%20St%20Michaels%20Rd%2C%20Colombo%2000300%2C%20Sri%20Lanka!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" title="APEX FITNESS Location" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a href="https://www.google.com/maps/place/28+St+Michaels+Road,+Colombo+00300,+Sri+Lanka" target="_blank" class="footer-map-overlay"><i class="bi bi-box-arrow-up-right"></i> Open in Google Maps</a>
+        </div>
+        <div class="footer-contact-list">
+          <div class="footer-contact-item"><i class="bi bi-geo-alt-fill"></i><span>28 St Michaels Rd, Colombo 00300</span></div>
+          <div class="footer-contact-item"><i class="bi bi-telephone-fill"></i><a href="tel:+94112345678">+94 11 234 5678</a></div>
+          <div class="footer-contact-item"><i class="bi bi-envelope-fill"></i><a href="mailto:hello@apexfitness.lk">hello@apexfitness.lk</a></div>
+          <div class="footer-contact-item"><i class="bi bi-clock-fill"></i><span>Mon&ndash;Sun: 5:00 AM &ndash; 11:00 PM</span></div>
+        </div>
+      </div>
+      <div class="footer-newsletter-col">
+        <h4 class="footer-col-title">Stay in the Loop</h4>
+        <p style="color:var(--gray-text);font-size:.85rem;margin-bottom:1.2rem">Get exclusive workout tips, nutrition hacks, member discounts, and early event access &mdash; straight to your inbox.</p>
+        <div class="footer-newsletter">
+          <input type="email" id="footerEmail" placeholder="Your email address">
+          <button onclick="subscribeNewsletter()"><i class="bi bi-send-fill"></i></button>
+        </div>
+        <div class="footer-newsletter-perks">
+          <div class="footer-perk"><i class="bi bi-check-circle-fill"></i> No spam, ever</div>
+          <div class="footer-perk"><i class="bi bi-check-circle-fill"></i> Unsubscribe anytime</div>
+          <div class="footer-perk"><i class="bi bi-check-circle-fill"></i> Weekly fitness digest</div>
+        </div>
+        <div class="footer-certifications">
+          <div class="footer-cert"><i class="bi bi-patch-check-fill"></i> ISO Certified</div>
+          <div class="footer-cert"><i class="bi bi-shield-fill-check"></i> Data Secure</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom-premium">
+      <div class="footer-bottom-left">
+        <p>&copy; 2025 APEX FITNESS. All rights reserved. Built by <span style="color:var(--accent)">SLIIT OOP PROJECT</span>.</p>
+        <div class="footer-legal-links"><a href="#">Privacy Policy</a><span>&middot;</span><a href="#">Terms of Service</a><span>&middot;</span><a href="#">Cookie Policy</a></div>
+      </div>
+      <div class="footer-bottom-right">
+        <a href="member-login" style="color:rgba(255,255,255,.2);font-size:.7rem;text-decoration:none;letter-spacing:1px;">&#x1F512; Admin Portal</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── FLOATING ACTION BUTTON ──────────────────── -->
+<div class="fab-wrap" id="fabWrap">
+  <button class="fab-main" id="fabMain" aria-label="Quick Actions">
+    <i class="bi bi-plus-lg" id="fabIcon"></i>
+  </button>
+  <div class="fab-menu" id="fabMenu">
+    <a href="#pricing" class="fab-item" data-tip="View Plans">
+      <i class="bi bi-tag-fill"></i>
+    </a>
+    <a href="member-register" class="fab-item" data-tip="Join Now">
+      <i class="bi bi-person-plus-fill"></i>
+    </a>
+    <a href="#bmi" class="fab-item" data-tip="BMI Calc">
+      <i class="bi bi-calculator-fill"></i>
+    </a>
+    <a href="#location" class="fab-item" data-tip="Find Us">
+      <i class="bi bi-geo-alt-fill"></i>
+    </a>
+    <button class="fab-item" id="fabScrollTop" data-tip="Back to Top">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+  </div>
+</div>
+
+<!-- ── SECTION DIVIDER LINES ─────────────────────── -->
+<div id="sectionProgress" class="section-progress-dots"></div>
+
+<script src="../../../../static/js/landing.js?v=3"></script>
+<!-- ── DYNAMIC SETTINGS SYNC — Fetches admin settings and updates all landing page content ── -->
+<script>
+(function() {
+  /**
+   * Parses a time string like "5:00 AM", "11:00 PM", "6:00 AM" into minutes since midnight.
+   * Returns null if the string cannot be parsed.
+   */
+  function parseTimeToMins(str) {
+    if (!str) return null;
+    str = str.trim();
+    var match = str.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+    if (!match) return null;
+    var hr = parseInt(match[1], 10);
+    var mn = parseInt(match[2], 10);
+    var ampm = match[3].toUpperCase();
+    if (ampm === 'PM' && hr !== 12) hr += 12;
+    if (ampm === 'AM' && hr === 12) hr = 0;
+    return hr * 60 + mn;
+  }
+
+  /**
+   * Parses an hours range string like "5:00 AM – 11:00 PM" or "5:00 AM - 11:00 PM"
+   * Returns { open: minutesSinceMidnight, close: minutesSinceMidnight } or null.
+   */
+  function parseHoursRange(str) {
+    if (!str) return null;
+    // Split on dash variants (–, —, -)
+    var parts = str.split(/\s*[–—\-]\s*/);
+    if (parts.length < 2) return null;
+    var open  = parseTimeToMins(parts[0]);
+    var close = parseTimeToMins(parts[1]);
+    if (open === null || close === null) return null;
+    return { open: open, close: close };
+  }
+
+  /**
+   * Fetches gym settings from the admin API and updates all matching
+   * DOM elements so the landing page always reflects the latest settings.
+   */
+  function applySettings(s) {
+    if (!s) return;
+
+    // ── Gym Name ──────────────────────────────────────────────
+    var parts = (s.gymName || 'APEX FITNESS').split(/\s+/);
+    var first = parts[0] || '';
+    var rest  = parts.slice(1).join(' ') || '';
+    document.querySelectorAll('.nav-logo').forEach(function(el) {
+      el.innerHTML = first + '<span>' + rest + '</span>';
+    });
+    var preloaderLogo = document.querySelector('.preloader-logo');
+    if (preloaderLogo) preloaderLogo.innerHTML = first + '<span>' + rest + '</span>';
+    var mapFloatLogo = document.querySelector('.map-float-logo');
+    if (mapFloatLogo) {
+      var shortRest = rest.length > 3 ? rest.substring(0, 3) : rest;
+      mapFloatLogo.innerHTML = first + '<span>' + shortRest + '</span>';
+    }
+    var mapFloatName = document.querySelector('.map-float-info strong');
+    if (mapFloatName) mapFloatName.textContent = s.gymName;
+    document.title = s.gymName + ' — Premium Gym & Wellness Center';
+    var mapTitle = document.querySelector('.map-section-header .section-title');
+    if (mapTitle) mapTitle.innerHTML = 'VISIT <span class="accent">' + escHtml(s.gymName) + '</span>';
+
+    // ── Tagline ───────────────────────────────────────────────
+    if (s.tagline) {
+      var heroSub = document.querySelector('.hero-sub');
+      if (heroSub) heroSub.textContent = s.tagline;
+      var footerDesc = document.querySelector('.footer-brand-desc');
+      if (footerDesc) footerDesc.textContent = s.tagline;
+    }
+
+    // ── Address ───────────────────────────────────────────────
+    if (s.address) {
+      document.querySelectorAll('[data-setting="address"]').forEach(function(el) {
+        el.textContent = s.address;
+      });
+      var mapAddr = document.querySelector('.map-info-cards .map-ic:first-child .map-ic-value');
+      if (mapAddr) mapAddr.textContent = s.address;
+      var mapFloatAddr = document.querySelector('.map-float-info span');
+      if (mapFloatAddr) mapFloatAddr.textContent = s.address;
+      document.querySelectorAll('.footer-contact-item').forEach(function(item) {
+        var icon = item.querySelector('i');
+        if (icon && icon.classList.contains('bi-geo-alt-fill')) {
+          var span = item.querySelector('span');
+          if (span) span.textContent = s.address;
+        }
+      });
+    }
+
+    // ── Phone ─────────────────────────────────────────────────
+    if (s.phone) {
+      document.querySelectorAll('.map-info-cards .map-ic').forEach(function(card) {
+        var icon = card.querySelector('.map-ic-icon i');
+        if (icon && icon.classList.contains('bi-telephone-fill')) {
+          var val = card.querySelector('.map-ic-value');
+          if (val) val.textContent = s.phone;
+          card.setAttribute('onclick', "window.location='tel:" + s.phone.replace(/\s/g, '') + "'");
+        }
+      });
+      document.querySelectorAll('.footer-contact-item').forEach(function(item) {
+        var icon = item.querySelector('i');
+        if (icon && icon.classList.contains('bi-telephone-fill')) {
+          var link = item.querySelector('a');
+          if (link) { link.textContent = s.phone; link.href = 'tel:' + s.phone.replace(/\s/g, ''); }
+        }
+      });
+    }
+
+    // ── Email ─────────────────────────────────────────────────
+    if (s.email) {
+      document.querySelectorAll('.map-info-cards .map-ic').forEach(function(card) {
+        var icon = card.querySelector('.map-ic-icon i');
+        if (icon && icon.classList.contains('bi-envelope-fill')) {
+          var val = card.querySelector('.map-ic-value');
+          if (val) val.textContent = s.email;
+          card.setAttribute('onclick', "window.location='mailto:" + s.email + "'");
+        }
+      });
+      document.querySelectorAll('.footer-contact-item').forEach(function(item) {
+        var icon = item.querySelector('i');
+        if (icon && icon.classList.contains('bi-envelope-fill')) {
+          var link = item.querySelector('a');
+          if (link) { link.textContent = s.email; link.href = 'mailto:' + s.email; }
+        }
+      });
+    }
+
+    // ── Opening Hours → Parse and update status indicators ────
+    // Ensure FCMS_HOURS exists (defensive, in case landing.js init was skipped)
+    if (!window.FCMS_HOURS) {
+      window.FCMS_HOURS = { weekdayOpen: 300, weekdayClose: 1380, weekendOpen: 360, weekendClose: 1380 };
+    }
+    var weekdayRange = parseHoursRange(s.hoursWeekdays);
+    var weekendRange = parseHoursRange(s.hoursWeekends);
+
+    if (weekdayRange) {
+      window.FCMS_HOURS.weekdayOpen  = weekdayRange.open;
+      window.FCMS_HOURS.weekdayClose = weekdayRange.close;
+    }
+    if (weekendRange) {
+      window.FCMS_HOURS.weekendOpen  = weekendRange.open;
+      window.FCMS_HOURS.weekendClose = weekendRange.close;
+    }
+
+    // Determine current display string for hours
+    var now = new Date();
+    var day = now.getDay();
+    var isWeekend = (day === 0 || day === 6);
+    var currentHoursStr = isWeekend ? (s.hoursWeekends || s.hoursWeekdays) : s.hoursWeekdays;
+
+    // Update map info card hours text
+    if (currentHoursStr) {
+      var dayLabel = isWeekend ? 'Sat–Sun' : 'Mon–Fri';
+      document.querySelectorAll('.map-info-cards .map-ic').forEach(function(card) {
+        var icon = card.querySelector('.map-ic-icon i');
+        if (icon && icon.classList.contains('bi-clock-fill')) {
+          var val = card.querySelector('.map-ic-value');
+          if (val) val.textContent = dayLabel + ': ' + currentHoursStr;
+        }
+      });
+      document.querySelectorAll('.footer-contact-item').forEach(function(item) {
+        var icon = item.querySelector('i');
+        if (icon && icon.classList.contains('bi-clock-fill')) {
+          var span = item.querySelector('span');
+          if (span) span.textContent = dayLabel + ': ' + currentHoursStr;
+        }
+      });
+    }
+
+    // ── Re-trigger status indicators with updated hours ───────
+    if (typeof window.FCMS_updateNavStatus === 'function') {
+      window.FCMS_updateNavStatus();
+    }
+    // Re-trigger map status (it reads window.FCMS_HOURS internally)
+    if (typeof window.FCMS_updateMapStatus === 'function') {
+      window.FCMS_updateMapStatus();
+    }
+
+    // ── Social links ──────────────────────────────────────────
+    var socialContainer = document.querySelector('.footer-socials');
+    if (socialContainer) {
+      socialContainer.querySelectorAll('.social-link').forEach(function(link) {
+        var icon = link.querySelector('i');
+        if (!icon) return;
+        if (icon.classList.contains('bi-instagram') && s.instagram) {
+          link.href = 'https://instagram.com/' + s.instagram.replace('@', '');
+        }
+        if (icon.classList.contains('bi-facebook') && s.facebook) {
+          link.href = s.facebook.startsWith('http') ? s.facebook : 'https://' + s.facebook;
+        }
+      });
+    }
+  }
+
+  function escHtml(str) {
+    var div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  // ── Fetch settings on page load ─────────────────────────────
+  fetch('/api/settings')
+    .then(function(r) {
+      if (!r.ok) { throw new Error('Settings API returned ' + r.status); }
+      var ct = r.headers.get('Content-Type') || '';
+      if (!ct.includes('application/json')) { throw new Error('Settings API returned non-JSON response'); }
+      return r.json();
+    })
+    .then(function(data) { applySettings(data); })
+    .catch(function() {
+      // Settings API not available (static server or backend not running) — silently use defaults
+    });
+})();
+</script>
+
+<!-- ── MEMBER SESSION CHECK — show profile if logged in ────────── -->
+<script>
+(function() {
+  window.__fcmsMember = { loggedIn: false };
+
+  function getInitials(name) {
+    if (!name) return '?';
+    var parts = name.trim().split(/\s+/);
+    if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+    return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
+  }
+
+  function showProfileNav(data) {
+    // Set avatar initials
+    var el = document.getElementById('navAvatar');
+    if (el) el.textContent = getInitials(data.name);
+
+    // Set first name
+    var nameEl = document.getElementById('navProfileName');
+    if (nameEl) nameEl.textContent = data.name ? data.name.trim().split(' ')[0] : 'Member';
+
+    // Set dropdown greeting
+    var greet = document.getElementById('navDdGreeting');
+    if (greet) greet.textContent = 'Hi, ' + (data.name ? data.name.trim().split(' ')[0] : 'Member') + '!';
+
+    // Toggle visibility
+    var guest = document.getElementById('navGuestButtons');
+    var wrap  = document.getElementById('navProfileWrap');
+    if (guest) guest.style.display = 'none';
+    if (wrap)  wrap.style.display  = 'flex';
+
+    // Dropdown toggle
+    var btn  = document.getElementById('navProfileBtn');
+    var dd   = document.getElementById('navProfileDropdown');
+    if (!btn || !dd) return;
+
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var open = dd.classList.toggle('dropdown-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (wrap && !wrap.contains(e.target)) {
+        dd.classList.remove('dropdown-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        dd.classList.remove('dropdown-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  fetch('/api/me', { credentials: 'same-origin' })
+    .then(function(r) {
+      if (!r.ok) throw new Error('no session');
+      return r.json();
+    })
+    .then(function(data) {
+      window.__fcmsMember = data || { loggedIn: false };
+      if (data && data.loggedIn && data.role === 'member') showProfileNav(data);
+    })
+    .catch(function() {
+      window.__fcmsMember = { loggedIn: false };
+    });
+})();
+</script>
+
+<script>
+/* ── PLAN TOGGLE ─────────────────── */
+(function(){
+  var toggle = document.getElementById('planToggle');
+  var slider = document.getElementById('planSlider');
+  if(!toggle || !slider) return;
+  var btns = toggle.querySelectorAll('.plan-toggle-btn');
+
+  function moveSlider(activeBtn) {
+    slider.style.left = activeBtn.offsetLeft + 'px';
+    slider.style.width = activeBtn.offsetWidth + 'px';
+  }
+
+  // Position slider on first active button after layout
+  function initSlider() {
+    var active = toggle.querySelector('.plan-toggle-btn.active');
+    if (active) {
+      slider.style.transition = 'none';
+      moveSlider(active);
+      // Force reflow then re-enable transition
+      slider.offsetHeight;
+      slider.style.transition = '';
+    }
+  }
+
+  // Run after fonts load for accurate measurements
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(initSlider);
+  } else {
+    window.addEventListener('load', initSlider);
+  }
+  // Also run immediately as fallback
+  setTimeout(initSlider, 100);
+
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      btns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      moveSlider(btn);
+
+      var period = btn.getAttribute('data-period');
+      document.querySelectorAll('.price-value').forEach(function(el){
+        el.textContent = el.getAttribute('data-' + period);
+      });
+      document.querySelectorAll('.price-period').forEach(function(el){
+        el.textContent = el.getAttribute('data-' + period);
+      });
+      document.querySelectorAll('.price-annual-note').forEach(function(el){
+        el.style.display = period === 'annual' ? 'flex' : 'none';
+      });
+    });
+  });
+})();
+</script>
+
+<script>
+/* ── REVIEW SYSTEM ─────────────────── */
+(function(){
+  var revRating = 0;
+  var revModal = document.getElementById('revModal');
+  var revGrid = document.getElementById('revGrid');
+  var starInput = document.getElementById('revStarInput');
+  var revWrap = document.getElementById('revWriteWrap');
+
+  // Star input interaction
+  if (starInput) {
+    var stars = starInput.querySelectorAll('i');
+    stars.forEach(function(s) {
+      s.addEventListener('mouseenter', function() {
+        var v = parseInt(s.getAttribute('data-val'));
+        stars.forEach(function(st) {
+          st.classList.toggle('filled', parseInt(st.getAttribute('data-val')) <= v);
+          st.className = parseInt(st.getAttribute('data-val')) <= v ? 'bi bi-star-fill filled' : 'bi bi-star';
+        });
+      });
+      s.addEventListener('click', function() {
+        revRating = parseInt(s.getAttribute('data-val'));
+        stars.forEach(function(st) {
+          var v = parseInt(st.getAttribute('data-val'));
+          st.classList.toggle('filled', v <= revRating);
+          st.className = v <= revRating ? 'bi bi-star-fill filled' : 'bi bi-star';
+        });
+      });
+    });
+    starInput.addEventListener('mouseleave', function() {
+      stars.forEach(function(st) {
+        var v = parseInt(st.getAttribute('data-val'));
+        st.classList.toggle('filled', v <= revRating);
+        st.className = v <= revRating ? 'bi bi-star-fill filled' : 'bi bi-star';
+      });
+    });
+  }
+
+  // Show Write Review button for logged-in members
+  function checkAuth() {
+    if (window.__fcmsMember && window.__fcmsMember.loggedIn && revWrap) {
+      revWrap.style.display = 'flex';
+    }
+  }
+  // Check immediately, and re-check after the auth fetch resolves
+  setTimeout(checkAuth, 500);
+  setTimeout(checkAuth, 2000);
+
+  // Open/Close modal
+  var writeBtn = document.getElementById('revWriteBtn');
+  if (writeBtn) {
+    writeBtn.addEventListener('click', function() {
+      revModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  window.closeRevModal = function() {
+    revModal.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  if (revModal) {
+    revModal.addEventListener('click', function(e) {
+      if (e.target === revModal) closeRevModal();
+    });
+  }
+
+  // Submit review
+  window.submitReview = function() {
+    var text = document.getElementById('revText').value.trim();
+    if (!text) { alert('Please write your review.'); return; }
+    if (revRating === 0) { alert('Please select a rating.'); return; }
+    var member = window.__fcmsMember || {};
+    var name = member.name || member.fullName || 'Member';
+    var initial = name.charAt(0).toUpperCase();
+    var colors = ['#3b82f6','#a78bfa','#34d399','#f97316','#ec4899','#06b6d4'];
+    var color = colors[Math.floor(Math.random() * colors.length)];
+
+    // Save to localStorage
+    var reviews = JSON.parse(localStorage.getItem('fcms_reviews') || '[]');
+    var rev = { name: name, text: text, rating: revRating, color: color, date: new Date().toLocaleDateString() };
+    reviews.push(rev);
+    localStorage.setItem('fcms_reviews', JSON.stringify(reviews));
+
+    // Render card
+    renderReviewCard(rev);
+    closeRevModal();
+    document.getElementById('revText').value = '';
+    revRating = 0;
+    if (starInput) {
+      starInput.querySelectorAll('i').forEach(function(s) { s.className = 'bi bi-star'; s.classList.remove('filled'); });
+    }
+  };
+
+  function renderReviewCard(rev) {
+    var starsHtml = '';
+    for (var i = 0; i < 5; i++) {
+      starsHtml += i < rev.rating ? '<i class="bi bi-star-fill"></i>' : '<i class="bi bi-star"></i>';
+    }
+    var card = document.createElement('div');
+    card.className = 'rev-card';
+    card.innerHTML = '<div class="rev-card-accent" style="background:linear-gradient(90deg,' + rev.color + ',' + rev.color + '88)"></div>' +
+      '<div class="rev-card-inner">' +
+        '<div class="rev-rating">' + starsHtml + '</div>' +
+        '<div class="rev-quote-icon"><i class="bi bi-quote"></i></div>' +
+        '<p class="rev-text">"' + rev.text.replace(/</g,'&lt;') + '"</p>' +
+        '<div class="rev-footer">' +
+          '<div class="rev-author">' +
+            '<div class="rev-avatar" style="background:' + rev.color + '">' + rev.name.charAt(0).toUpperCase() + '</div>' +
+            '<div><strong>' + rev.name.replace(/</g,'&lt;') + '</strong><span>' + rev.date + '</span></div>' +
+          '</div>' +
+          '<div class="rev-verified"><i class="bi bi-patch-check-fill"></i> Verified</div>' +
+        '</div>' +
+      '</div>';
+    card.style.opacity = '0'; card.style.transform = 'translateY(20px)';
+    revGrid.appendChild(card);
+    requestAnimationFrame(function() {
+      card.style.transition = 'opacity .5s, transform .5s';
+      card.style.opacity = '1'; card.style.transform = 'translateY(0)';
+    });
+  }
+
+  // Load saved reviews
+  var saved = JSON.parse(localStorage.getItem('fcms_reviews') || '[]');
+  saved.forEach(renderReviewCard);
+})();
+</script>
+
+
+</body>
+</html>
+
+
