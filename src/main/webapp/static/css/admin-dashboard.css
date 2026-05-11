@@ -1,0 +1,81 @@
+/* ============================================================
+   ADMIN DASHBOARD — Sidebar Layout
+   ============================================================ */
+.admin-layout{display:flex;min-height:100vh;padding-top:var(--navbar-h)}
+.admin-sidebar{position:fixed;top:var(--navbar-h);left:0;bottom:0;width:260px;background:#0d0d0d;border-right:1px solid var(--border);padding:1.5rem 0;overflow-y:auto;z-index:90;transition:transform .3s}
+.admin-sidebar .sb-section{padding:0 .75rem;margin-bottom:1.5rem}
+.admin-sidebar .sb-label{font-size:.65rem;letter-spacing:2px;color:var(--gray2);text-transform:uppercase;padding:0 .75rem;margin-bottom:.5rem}
+.admin-sidebar .sb-item{display:flex;align-items:center;gap:.65rem;padding:.6rem .75rem;border-radius:10px;color:rgba(255,255,255,.55);font-size:.84rem;font-weight:500;cursor:pointer;transition:all .2s;border:1px solid transparent}
+.admin-sidebar .sb-item:hover{color:rgba(255,255,255,.85);background:rgba(255,255,255,.04)}
+.admin-sidebar .sb-item.active{color:var(--accent);background:rgba(var(--accent-rgb),.08);border-color:rgba(var(--accent-rgb),.15)}
+.admin-sidebar .sb-item i{font-size:1rem;width:20px;text-align:center}
+.admin-sidebar .sb-item .sb-badge{margin-left:auto;background:var(--accent);color:#000;font-size:.65rem;font-weight:700;padding:1px 6px;border-radius:10px}
+.admin-content{margin-left:260px;flex:1;padding:2rem 2.5rem 4rem;min-width:0}
+
+/* Dashboard Section Panels */
+.dash-section{display:none;animation:fadeUp .4s ease}
+.dash-section.active-section{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* Section Header */
+.sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem}
+.sec-header h2{font-family:var(--font-display);font-size:1.8rem;letter-spacing:2px}
+.sec-header h2 span{color:var(--accent)}
+
+/* Enhanced Stat Cards */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-bottom:2rem}
+.s-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;position:relative;overflow:hidden;transition:border-color .3s}
+.s-card:hover{border-color:rgba(var(--accent-rgb),.25)}
+.s-card::after{content:'';position:absolute;top:-30px;right:-30px;width:80px;height:80px;border-radius:50%;opacity:.06}
+.s-card.sc-green::after{background:var(--accent)}
+.s-card.sc-blue::after{background:#60a5fa}
+.s-card.sc-red::after{background:#f87171}
+.s-card.sc-yellow::after{background:#fbbf24}
+.s-card .sc-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem}
+.s-card .sc-icon.green{background:rgba(var(--accent-rgb),.1);color:var(--accent)}
+.s-card .sc-icon.blue{background:rgba(96,165,250,.1);color:#60a5fa}
+.s-card .sc-icon.red{background:rgba(248,113,113,.1);color:#f87171}
+.s-card .sc-icon.yellow{background:rgba(251,191,36,.1);color:#fbbf24}
+.s-card .sc-val{font-size:1.8rem;font-weight:800;line-height:1}
+.s-card .sc-label{font-size:.72rem;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-top:.3rem}
+.s-card .sc-change{font-size:.72rem;margin-top:.5rem;display:flex;align-items:center;gap:.3rem}
+.s-card .sc-change.up{color:var(--success)}
+.s-card .sc-change.down{color:var(--danger)}
+
+/* Chart Panels */
+.chart-grid{display:grid;grid-template-columns:2fr 1fr;gap:1.25rem;margin-bottom:2rem}
+.chart-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem}
+.chart-panel h4{font-family:var(--font-display);font-size:1.1rem;letter-spacing:1px;margin-bottom:1rem}
+.chart-panel h4 i{color:var(--accent);margin-right:.4rem}
+
+/* Activity Feed */
+.activity-feed{display:flex;flex-direction:column;gap:.6rem;max-height:350px;overflow-y:auto;padding-right:.5rem}
+.af-item{display:flex;gap:.75rem;padding:.6rem;border-radius:var(--radius-sm);border:1px solid var(--border);background:rgba(255,255,255,.02);transition:border-color .2s}
+.af-item:hover{border-color:rgba(var(--accent-rgb),.15)}
+.af-dot{width:8px;height:8px;border-radius:50%;margin-top:6px;flex-shrink:0}
+.af-dot.green{background:var(--success)}
+.af-dot.blue{background:#60a5fa}
+.af-dot.yellow{background:#fbbf24}
+.af-dot.red{background:#f87171}
+.af-text{font-size:.82rem;color:rgba(255,255,255,.7)}
+.af-time{font-size:.7rem;color:var(--gray2);margin-top:.15rem}
+
+/* Settings Form */
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.setting-group{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
+.setting-group h4{font-family:var(--font-display);font-size:1.1rem;letter-spacing:1px;margin-bottom:1rem}
+.setting-group h4 i{color:var(--accent);margin-right:.4rem}
+.s-field{margin-bottom:1rem}
+.s-field label{display:block;font-size:.75rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem}
+.s-field input,.s-field textarea,.s-field select{width:100%;padding:.6rem .8rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--radius-sm);color:#fff;font-family:var(--font);font-size:.85rem}
+.s-field input:focus,.s-field textarea:focus,.s-field select:focus{outline:none;border-color:var(--accent)}
+
+/* Notification Items */
+.notif-list{display:flex;flex-direction:column;gap:.6rem}
+.notif-item{display:flex;align-items:flex-start;gap:.75rem;padding:.8rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.notif-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem}
+
+/* Responsive */
+@media(max-width:1024px){.admin-sidebar{transform:translateX(-100%)}.admin-sidebar.open{transform:translateX(0)}.admin-content{margin-left:0;padding:1.5rem 1rem}}
+@media(max-width:768px){.stats-row{grid-template-columns:repeat(2,1fr)}.chart-grid,.settings-grid{grid-template-columns:1fr}}
+@media(max-width:500px){.stats-row{grid-template-columns:1fr}}

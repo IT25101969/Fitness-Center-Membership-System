@@ -1,0 +1,114 @@
+/* ================================================================
+   TRAINER MODULE — Module-Specific Styles
+   APEX FITNESS · Fitness Center Membership System
+   ================================================================
+   Styles for trainer management list and form views.
+   ================================================================ */
+
+:root {
+  --accent: #C8F03D;
+  --bg: #080808;
+  --surface: #111111;
+  --border: rgba(255,255,255,0.07);
+  --text: #ffffff;
+  --text-muted: rgba(255,255,255,0.45);
+  --danger: #f87171;
+  --radius: 16px;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ── Trainer Card ── */
+.trainer-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.trainer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  border-color: rgba(139,92,246,0.3);
+}
+
+/* ── Trainer Avatar ── */
+.trainer-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* ── Trainer Info ── */
+.trainer-name {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.15rem;
+}
+
+.trainer-email {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ── Specialization Badge ── */
+.trainer-spec {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: rgba(139,92,246,0.1);
+  color: #8B5CF6;
+}
+
+/* ── Trainer Grid ── */
+.trainer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+/* ── Table Styles ── */
+.trainer-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.trainer-table th {
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.trainer-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.trainer-table tr:hover {
+  background: rgba(255,255,255,0.02);
+}
+
+/* ── Action Buttons ── */
+.trainer-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
