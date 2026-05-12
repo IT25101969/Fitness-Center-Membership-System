@@ -1,6 +1,6 @@
 ﻿package com.fcms.util;
 
-import com.antigravity.fcms.dao.FileStorageService;
+import com.example.fitness.center.FileStorageService;
 
 /**
  * Utility class providing common file-related helper methods.

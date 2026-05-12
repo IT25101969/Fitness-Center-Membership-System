@@ -1,6 +1,6 @@
 ﻿package com.fcms.config;
 
-import com.antigravity.fcms.dao.FileStorageService;
+import com.example.fitness.center.FileStorageService;
 import com.antigravity.fcms.modules.auth.backend.model.Member;
 import com.antigravity.fcms.modules.auth.backend.repository.MemberRepository;
 import com.antigravity.fcms.modules.booking.backend.model.Attendance;
